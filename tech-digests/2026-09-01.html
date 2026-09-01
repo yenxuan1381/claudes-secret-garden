@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 1, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 1, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people actually shipped and argued about this week — pulled from GitHub's daily trending list, Show HN, and the threads underneath them. No funding rounds, no press releases with nothing running behind them.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source app that clones voices, dubs video, and transcribes speech in 646 languages, running entirely on your own machine. It's one developer's answer to ElevenLabs — no subscription, no cloud upload, just install and run.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Studio-quality voice cloning has mostly lived behind a metered API. This makes it free and fully local, which matters to anyone who doesn't want voice or audio data leaving their machine.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If you produce investor updates, internal training video, or need multilingual dubbing for client material, this removes both the recurring API cost and the question of whose servers your voice data touches.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">~750 stars gained in a day and active daily releases — but a crowded field.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">github.com/debpalash/VoiceStudio</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/firecrawl/pdf-inspector" target="_blank" rel="noopener">pdf-inspector</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A small, fast Rust library that looks at a PDF and instantly tells you whether it's text, scanned, or mixed, then pulls out clean text without OCR. It ships as a CLI plus bindings for Python, Node, and the browser.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most document pipelines run every PDF through expensive OCR just in case. This classifies a page in 10–50ms and reserves OCR for the roughly half of PDFs that actually need it — real cost and latency cut.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Finance runs on PDFs — 10-Ks, statements, disclosures, loan docs. A cheap pre-classifier that routes only genuinely-scanned documents to OCR is a direct lever on any document-ingestion pipeline, in-house or vendored.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Narrow, well-executed, from a team (Firecrawl) with a track record of shipped infra.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/firecrawl/pdf-inspector" target="_blank" rel="noopener">github.com/firecrawl/pdf-inspector</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/averygan/reclip" target="_blank" rel="noopener">reclip</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A one-script, self-hosted web app that downloads video or audio from almost any site — YouTube, TikTok, X, and 1,000+ others via yt-dlp — through a clean browser UI instead of the command line.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>yt-dlp is powerful but terminal-only. reclip just puts a UI on it, so anyone on your home network can paste a link and get an MP4 or MP3 back — no command-line comfort required.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool. Handy for archiving webinars or reference clips for your own research; not a business case.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A clean, well-made UI wrapper on an existing tool, not a new capability.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/averygan/reclip" target="_blank" rel="noopener">github.com/averygan/reclip</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">video-use</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source tool that edits video by chatting with a coding agent instead of a timeline — drop in raw footage, describe the cut, get final.mp4 back. It never shows the agent actual frames; instead it converts the footage into a word-level transcript the model can reason over.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Feeding raw video to an LLM burns enormous context for little payoff. Turning a 20-minute clip into a ~12KB timestamped transcript is what makes agentic editing — cutting filler words, matching cuts to word boundaries — tractable today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Less a tool to adopt than a pattern worth stealing: compress a heavy medium into something an agent can reason about cheaply. The same move applies to any agent workflow built on audio or video input.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A genuinely clever, working technique — unproven past simple cuts.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">github.com/browser-use/video-use</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noopener">academic-research-skills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A set of "skills" for Claude Code that walks it through a full research process — investigate, draft, review, revise, finalize — rather than one-shotting a single answer.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Generic AI research assistants tend to hand back one confident-sounding draft. Splitting the process into discrete, checkable stages produces something closer to how research actually gets done — and it's picking up real daily traction.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The investigate → draft → review → revise structure maps directly onto equity research or diligence writeups. Worth a look if you're experimenting with Claude Code for analyst-style work rather than plain Q&amp;A.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Useful structure, but "skills" repos are a crowded, fast-churning category right now.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noopener">github.com/Imbad0202/academic-research-skills</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">DeepSeek Harness</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>DeepSeek's newly open-sourced (MIT), "everything is a plugin" framework for building AI agent harnesses — the scaffolding layer that sits between a model and the tools, shell, and files it uses to get work done, released this week as a developer preview.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a credible, free, open alternative to the closed or semi-closed harnesses (Claude Code, Codex) — from a lab with real model chops of its own. That's a direct challenge to who controls the "how agents actually work" layer.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Not something to migrate to yet — it's an unaudited v0.1 with breaking changes expected — but a clear signal that agent-harness tooling is about to get more competitive and more open, worth watching if you're evaluating that layer.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">A major model lab open-sourcing its own harness is a structural move, not a toy.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener">github.com/deepseek-ai/deepseek-harness</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://github.com/THU-MAIC/OpenMAIC" target="_blank" rel="noopener">OpenMAIC</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source project out of Tsinghua that turns any document or topic into an interactive "classroom" — AI teachers narrate slides, AI classmates ask questions, and it generates live quizzes and simulations on the fly, all multi-agent.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It gained over 3,000 stars in a single day — the kind of spike that means a lot of people are trying it right now. Multi-agent "cast of characters" learning experiences are still rare to see working end-to-end instead of as a demo video.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool, with a genuine L&amp;D angle if you ever need to onboard people onto dense material — compliance training, a new internal system. Worth five minutes, not a roadmap item.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real, sudden traction and academic backing — but AGPL-3.0 and university-run, so the commercial path is unclear.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/THU-MAIC/OpenMAIC" target="_blank" rel="noopener">github.com/THU-MAIC/OpenMAIC</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Show HN, and surrounding discussion · Sept 1, 2026
+  </footer>
+
+</div>
+</body>
+</html>
