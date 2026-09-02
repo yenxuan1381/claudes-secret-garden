@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 2, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 2, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Five things people actually shipped and argued about in the last day or two — a Show HN hack, an agent-tooling primitive, a runaway skills library, one very small joke that isn't really a joke, and an open-source jab at an expensive SaaS category.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/carloslfu/slotstream" target="_blank" rel="noopener">Slotstream</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A tool that runs Qwen3.8-Flash-Next — a 125B-parameter model that normally needs 104GB of RAM at 4-bit — on a Mac with as little as 48GB, by streaming only the "expert" weights it needs off SSD instead of loading the whole model into memory. It's built in Swift on MLX and exposes an Ollama-compatible API.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The standard fix for "model too big" has been "buy more RAM." Slotstream treats the SSD as a much bigger, slightly-slower RAM instead, and gets a genuinely usable ~12 tokens/sec out of it — enough that the Show HN thread pulled 134 points and 84 comments.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team runs large open-weight models locally for cost or data-privacy reasons, this technique — not necessarily this exact tool — changes the hardware math for who can afford to run a 125B-class model at all.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real, working, MIT-licensed — but Apple Silicon only, one developer, early days.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/carloslfu/slotstream" target="_blank" rel="noopener">github.com/carloslfu/slotstream</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/dmtrKovalenko/fff" target="_blank" rel="noopener">fff</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A file-search engine shipped as one Rust core with thin bindings for C, Python, Node/Bun, and Neovim, built to start once and stay warm in memory instead of being re-launched as a fresh process on every search. It adds fuzzy path matching, content grep, git-status awareness, and frecency ranking on top.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>ripgrep and fzf are fast per call, but an AI coding agent that runs hundreds of searches a session pays the cost of spawning a new process and re-scanning the filesystem every time — 3-9 seconds per call on a repo the size of Chromium, versus sub-10ms once fff's index is warm.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The pattern is the takeaway, not the tool: if you're running agents over large codebases or document sets, a warm resident index beats shelling out repeatedly — it's already inside opencode and nushell.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">10.4k stars and already load-bearing in real projects, but it's plumbing, not a product.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/dmtrKovalenko/fff" target="_blank" rel="noopener">github.com/dmtrKovalenko/fff</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener">Scientific Agent Skills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A library of 165 "skills" that plug into agents like Claude Code, Cursor, and Codex, each one teaching the agent how to correctly use one specific scientific database or method — cancer genomics, drug-target binding, molecular dynamics, regulatory literature search, and more.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>A generic coding agent doesn't know how to correctly query a genomics database or validate a PK/PD model; these skills package that domain expertise so it doesn't hallucinate its way through a scientific workflow. It gained roughly 900 stars in one day and is now the #3 repo on GitHub's trending page.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Not finance-specific, but it's a live, at-scale example of "bundle domain process and guardrails into a skill" — the exact pattern an equity-research or diligence team would want to build for its own playbook.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">Claimed 190k+ users and fast institutional-scale growth in a domain where being wrong is costly.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener">github.com/K-Dense-AI/scientific-agent-skills</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/VictorVVedtion/trading-skills" target="_blank" rel="noopener">trading-skills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A tiny open-source pack of Claude Code skills that turn 68 real investors and traders — Buffett, Jim Simons, Michael Burry, Ray Dalio, and others — into personas that weigh in as you discuss a trade, plus a pre-trade risk gate and a "tilt detector" for emotional trading.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's genuinely funny — "SBF's ghost shows up when you forget a stop-loss" — sitting on top of a real, useful primitive: encoding one investor's actual discipline (position sizing, what invalidates a thesis) as something an agent can apply, not just impersonate.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Squarely your lane: if you're already using Claude Code for analysis, it's a free, five-minute way to test whether a "reason like investor X" skill is a useful way to red-team your own trade or thesis writeups.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">18 stars, one developer, days old — but a clean example of a pattern turning up across several repos right now.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/VictorVVedtion/trading-skills" target="_blank" rel="noopener">github.com/VictorVVedtion/trading-skills</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/every-app/open-seo" target="_blank" rel="noopener">OpenSEO</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A self-hosted, open-source SEO platform — keyword research, rank tracking, competitor and backlink analysis, site audits — that you run yourself and pay for only the underlying data API calls, instead of a $100-500+/month Semrush or Ahrefs seat.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Semrush and Ahrefs are expensive, closed SaaS platforms; OpenSEO takes the same workflows and makes them free to run and inspect, and ships an MCP server so an AI agent can query your SEO data mid-conversation instead of you exporting spreadsheets. It's back on GitHub's trending page today with a fresh spike of stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete cost lever if you or a portfolio company pays for SEO tooling today — and structurally it's the "unbundle the expensive incumbent SaaS into open, pay-as-you-go plus AI-agent hooks" move worth watching in other categories too.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">16k+ stars and a Product Hunt #1 day already behind it, but data coverage still trails the incumbents it's copying.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/every-app/open-seo" target="_blank" rel="noopener">github.com/every-app/open-seo</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Show HN, and surrounding discussion · Sept 2, 2026
+  </footer>
+
+</div>
+</body>
+</html>
