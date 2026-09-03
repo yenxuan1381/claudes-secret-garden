@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 3, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 3, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people actually shipped and argued about in the last day or two — a git-for-agents primitive, a tool that gets agents to shut up and save you money, an anti-bloat discipline skill, a full agent operating system from one maintainer, a free A-share stock scanner, and one tool that makes "is this AI-written" unanswerable.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/pacifio/atlas" target="_blank" rel="noopener">Atlas</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A desktop app that acts like git, but for AI coding agents: it runs Claude Code, Codex, and other agents side by side against the same repo, and turns every agent session into a "checkpoint" that links a commit back to the exact prompts, tool calls, and reasoning that produced it. Built solo, in Rust.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Switching agents mid-task normally means losing all context, and figuring out why an agent made a change means digging through scrollback. Atlas keeps shared memory across agents and makes every past decision searchable months later — a real gap in anyone's multi-agent setup. It launched on Show HN and jumped to 3.1k stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team already runs Claude Code, Cursor, and Codex against the same codebase, this is the audit trail — the "who changed this and why" log any finance-adjacent eng org would want before letting agents near production code unsupervised.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real, working, one dev — but the underlying idea, a shared ledger across agents, is exactly where multi-agent tooling has to go next.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/pacifio/atlas" target="_blank" rel="noopener">github.com/pacifio/atlas</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">Caveman</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A prompt rule plus a local proxy that make coding agents communicate in short, blunt sentences instead of padded prose — "why use many token when few token do trick" — and compress whatever the agent reads (logs, diffs, JSON) before it ever hits the API.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Token count is the literal line item on your AI bill, and most of what gets burned is verbose explanation and full log dumps nobody asked for. The author's own benchmark showed a 65% cut in output tokens and 33% fewer input tokens across a 54-run test, with accuracy unchanged.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete cost lever if your team runs agents at real volume — a five-minute config change instead of a new subscription or a model downgrade, and the unglamorous kind of optimization that pays for itself the same day.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Numbers are self-reported "inferred estimates," not audited invoices — but the mechanism is sound and costs nothing to try.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">github.com/JuliusBrussee/caveman</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">Ponytail</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A skill that forces coding agents through a "reuse before you build" checklist before writing anything new — check for existing code, use built-ins, skip the new abstraction — modeled on how a disciplined senior engineer pushes back on unnecessary complexity.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The default failure mode of agentic coding is bloat: agents love inventing helper functions and abstractions for things that already exist. Ponytail's own numbers claim roughly 54% less code and 27% faster runs with no drop in correctness, and it works across 20+ agents, not just one. It gained over 1,300 stars in a single day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Less code an agent writes is less code someone has to review, maintain, and eventually debug — a cheap guardrail worth installing if you're letting agents touch anything that matters.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Viral overnight growth is real, but the 54% figure is self-reported — nobody's independently audited it yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">github.com/DietrichGebert/ponytail</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">ECC</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A full "agent harness operating system" — 68 specialized sub-agents, 286 reusable skills, memory that persists across sessions, and a scanner that checks the agent's own configuration for security holes — coordinating a plan → build → review → verify → remember loop across seven coding agents at once.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "skills" repos are just markdown files an agent reads once and forgets. ECC is closer to an actual operating system: it persists memory between sessions, enforces quality gates outside the model's own judgment, and governs its own config — all MIT-licensed and shipped weekly by one maintainer.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A preview of where agent tooling is heading — from prompt libraries to real infrastructure with governance and audit built in, the layer any regulated shop will need before it hands agents real autonomy.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">246k+ stars and weekly shipping from a single maintainer is an unusual growth curve for infrastructure this deep.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">github.com/affaan-m/ECC</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/sngyai/Sequoia-X" target="_blank" rel="noopener">Sequoia-X</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source, rebuilt-from-scratch scanner for the Chinese A-share market that runs six technical-pattern strategies — breakouts, moving-average/volume surges, limit-up retests — against roughly 5,200 stocks every day after close and pushes hits straight to a chat app.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Full-market, daily pattern scanning like this is usually locked behind a paid terminal. Sequoia-X does the same job with free market data, a local SQLite database, and an incremental scan that finishes in 2-3 minutes — one developer's weekend project standing in for a Bloomberg screen.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Not a strategy to trade blind, but a clean, inspectable reference implementation of A-share technical screening — a free baseline if you or a desk wants to sanity-check what a paid data or screening vendor is actually charging for.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">One dev, unaudited signals, a single narrow market — a solid engineering reference, not something to trust with capital.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/sngyai/Sequoia-X" target="_blank" rel="noopener">github.com/sngyai/Sequoia-X</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">Humanizer</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An agent skill that rewrites AI-generated text to strip out roughly 35 telltale patterns of machine writing — stock phrases, forced rule-of-three lists, passive voice — while claiming not to invent new facts along the way.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a direct, working answer to AI-detection tools, built openly and popular enough to be trending — which says something uncomfortable about how normalized disguising AI writing has already become. The repo doesn't address the academic-dishonesty or deception angle at all.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth knowing about even if you never touch it: any AI-detection tool your compliance, hiring, or content-review process leans on should now be assumed beatable by something free and five minutes away.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Works as advertised — and is exactly the dual-use tool that makes "is this AI-written" an unanswerable question going forward.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">github.com/blader/humanizer</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Show HN, and surrounding discussion · Sept 3, 2026
+  </footer>
+
+</div>
+</body>
+</html>
