@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 5, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 5, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things getting real attention right now — a from-scratch open-source Docker Desktop rival for Macs, a switchboard for juggling eight different AI coding tools, memory that survives you closing your agent, a phone turned into a studio mic, a Go compiler that skips cgo's tax entirely, and one solo researcher's AI-assisted exploit archive.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/arcboxlabs/arcbox" target="_blank" rel="noopener">ArcBox</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source container and VM runtime for Apple Silicon Macs, built from scratch in Rust — its own hypervisor, network stack, and VirtIO devices, not a wrapper around someone else's. One runtime handles Docker-compatible containers, full Linux VMs, macOS guest VMs, and sub-100ms AI-agent sandboxes.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>OrbStack and Docker Desktop both charge once you're a team, and neither lets you read the code underneath. ArcBox is a public-beta, MIT/Apache-2.0 answer built by a small team — and it's having a big day: it gained 567 stars today alone, roughly a fifth of its total 2,887.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete line to test against your Docker Desktop Business or OrbStack Teams renewal if you run a Mac-based engineering org — same job, no per-seat license.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real hypervisor-level engineering in public beta — exactly the layer where edge cases bite a young project hardest.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/arcboxlabs/arcbox" target="_blank" rel="noopener">github.com/arcboxlabs/arcbox</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/farion1231/cc-switch" target="_blank" rel="noopener">CC Switch</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free desktop app for Windows, Mac, and Linux that puts one visual switcher in front of eight different AI coding tools — Claude Code, Codex, Gemini CLI, and more — for their configs, API providers, and MCP servers, instead of hand-editing a different JSON or TOML file for each.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Running more than one agent tool is now normal, and each one wants its own config format and its own place to paste an API key. CC Switch collapses all of that into one tray-accessible switcher with cloud sync — it's picked up another 182 stars today on top of 131,000+.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Squarely useful if your team already runs more than one of these tools side by side — it's the unglamorous key-and-config management layer that saves real minutes every day, not a business case by itself.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Already deep and load-bearing for a lot of people, but it's a convenience layer over other people's tools, not a moat.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/farion1231/cc-switch" target="_blank" rel="noopener">github.com/farion1231/cc-switch</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">ai-memory</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A Rust tool that gives AI coding agents memory that outlives the session: quit Claude Code mid-task, start Codex in the same folder, and it already knows what happened, across 20+ supported agents and even across machines via a shared server.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Normally an agent's context dies the moment you close the window or switch tools, and the next agent — or the next person — starts from zero. ai-memory captures session notes automatically through hooks and turns them into searchable wiki pages the next agent can pull from before it starts working.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team already runs more than one agent against the same codebase, this closes a real continuity gap — handoffs between agents, or between you and a colleague's agent session, stop re-explaining everything.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a genuine, common annoyance, but it only pays off once a whole team actually adopts the hook.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">github.com/akitaonrails/ai-memory</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/LanRhyme/MicYou" target="_blank" rel="noopener">MicYou</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An app that turns an Android phone into a wireless or USB microphone for your computer, routing audio through a real processing pipeline — AI and traditional noise suppression, echo cancellation, automatic gain control — rather than just passing the raw signal through.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>A decent USB mic runs $50–150; most people already carry a phone with a better mic than their laptop's. MicYou streams that audio to a virtual device so any app on your desktop just sees a normal microphone, no dedicated hardware required.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — though it's a genuine few-dollars-saved trick for kitting out a home office or a team's meeting-room laptops on a budget.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Well-built and free, but a personal convenience app, not something with a business angle.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/LanRhyme/MicYou" target="_blank" rel="noopener">github.com/LanRhyme/MicYou</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/xgo-dev/llgo" target="_blank" rel="noopener">llgo</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A Go compiler built on LLVM that keeps ordinary Go syntax but compiles straight down to code that speaks C's calling convention natively, so it can call into — or be called from — C, Python, and JavaScript libraries with no cgo layer sitting in between.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>cgo works, but it carries real runtime overhead and friction any time Go code needs to talk to the C ecosystem. This week's Console.dev newsletter summed up llgo's pitch as "FFI performance without FFI" — Go treated as a first-class citizen of the C world instead of a guest paying a toll to get there.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Narrow but real: relevant if any of your stack bridges Go services to C or Python numerical libraries — pricing engines, risk models — where this is exactly the kind of primitive that quietly removes a latency tax later.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A serious compiler project 6,600+ commits deep, but still tied to specific Go and LLVM versions, and early for production use.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/xgo-dev/llgo" target="_blank" rel="noopener">github.com/xgo-dev/llgo</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/bikini/exploitarium" target="_blank" rel="noopener">Exploitarium</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A public archive of 50+ proof-of-concept exploits and vulnerability writeups — covering software like Firefox, OpenSSH, and Discord — built and published by one independent researcher who says the fuzzing work behind the findings was largely AI-automated.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a live data point for what "AI lowers the barrier to vulnerability research" actually looks like: one person, without a professional security team behind them, finding and documenting real, previously undocumented bugs at a pace that used to take a group. The repo carries an explicit disclaimer against malicious use and encourages formal CVE disclosure.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth knowing about even if you never open the repo — it's a preview of your own threat model: the cost of finding an exploitable bug in software you depend on just dropped for researchers and attackers alike.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">The findings look real, but the whole story depends on disclosure staying responsible — that's the tension, not a side note.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/bikini/exploitarium" target="_blank" rel="noopener">github.com/bikini/exploitarium</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Console.dev, and surrounding discussion · Sept 5, 2026
+  </footer>
+
+</div>
+</body>
+</html>
