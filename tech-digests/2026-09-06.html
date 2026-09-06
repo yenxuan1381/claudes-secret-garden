@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 6, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 6, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a local-inference server that plugs into whatever coding agent you already use, a from-scratch Rust replacement for Logitech's bloated mouse software, NVIDIA's own scanner for malicious "skills," a no-signup toolbox for quick browser jobs, an open-source relay for splitting a single AI subscription across a group, and one solo dev's skills repo having the single biggest day on all of GitHub.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/magnitudedev/magnitude" target="_blank" rel="noopener">Magnitude</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source inference server that profiles your machine, recommends the local models that actually fit your hardware, then downloads, tunes, and runs them — plugged straight into whichever coding agent you already use (Claude Code, Codex, Cline, OpenCode, Hermes, and others) instead of forcing you into a new one.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Running local models used to mean hand-picking a quantization for your GPU, wiring up a separate endpoint per tool, and manually managing memory. Magnitude does all three automatically, loading models just-in-time and unloading them when idle — it went from roughly 2,100 to 3,300+ stars within about a day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete cost lever if your team pays per-token for coding-agent API calls: route lower-stakes work to a free local model and keep the paid API for what actually needs it, without adopting a whole new agent tool to do it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely useful plumbing, but local models still trail frontier hosted ones on hard tasks — it's an efficiency layer, not a replacement.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/magnitudedev/magnitude" target="_blank" rel="noopener">github.com/magnitudedev/magnitude</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/AprilNEA/OpenLogi" target="_blank" rel="noopener">OpenLogi</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A native, local-first replacement for Logitech's Options+ software, written from scratch in Rust — it remaps buttons, DPI, and SmartShift scroll over Logitech's own HID++ protocol, with a real CLI alongside the GUI and one config file you can sync yourself.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Logitech's official app is an Electron shell that requires an account login just to remap a mouse button and phones home in the background. OpenLogi does the same job as a small native binary that never leaves your machine — no account, no telemetry — and Linux gets full support, not an afterthought.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — though it's a legitimate line to hand IT if your org issues Logitech peripherals and wants the bloated, login-gated official app off the standard laptop image.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Biggest single-day star gain of anything in Rust's trending list today, but the project itself says it's "not yet stable."</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/AprilNEA/OpenLogi" target="_blank" rel="noopener">github.com/AprilNEA/OpenLogi</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">SkillSpector</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source scanner that checks Claude Code, Codex, and MCP "skills" for malicious code, prompt injection, data exfiltration, and other supply-chain risks before you install them — combining AST analysis, taint tracking, and YARA signatures, with an optional LLM pass for intent.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The skill and MCP-server ecosystem around coding agents has exploded this year with almost no vetting layer in between. NVIDIA's own research behind the tool found roughly 1 in 4 published skills carry a real vulnerability and about 1 in 20 look outright malicious.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly actionable: if anyone on your team installs community skills or MCP servers into Claude Code or Codex, this is a five-minute CI gate to add before a random GitHub skill runs with your credentials on a machine that matters.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">It's tackling a real, growing attack surface — agent-skill supply chain — where almost no other tooling exists yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">github.com/NVIDIA/SkillSpector</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/BraveOPotato/FckSignups" target="_blank" rel="noopener">NoSignups</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A curated, community-maintained directory of 200+ tools — converters, editors, calculators — that are open-source, run entirely in your browser, and never ask for an account or an email address.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Almost every "quick tool" search now leads to a site demanding a free-trial signup before you can use it once. This is just a clean, growing list of things that work the moment you land on them, no dark patterns attached.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a genuinely handy bookmark for one-off tasks like converting a file or checking a hash, without leaving another "free trial" account behind in your inbox.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A curated list, not a product — all its value is in what other people already built, and that's fine, it's the whole point.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/BraveOPotato/FckSignups" target="_blank" rel="noopener">github.com/BraveOPotato/FckSignups</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/Wei-Shaw/sub2api" target="_blank" rel="noopener">Sub2API</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source relay server that lets a group pool a single Claude, OpenAI, Gemini, or Grok subscription behind one API endpoint, splitting the seat cost across everyone using it instead of each person paying for their own plan.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Frontier-model subscriptions are expensive per seat, and this turns one paid account into shared access for a whole team — the appeal is obvious, and it's picked up real traction, north of 29,000 stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth knowing this pattern exists even if you never touch it: it's exactly the kind of shadow-IT cost workaround that turns up in a vendor-risk review, and it almost certainly breaks the providers' own terms of service — a compliance flag, not a recommendation.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising*</span>
+        <span class="stamp-note">Technically works and answers a real cost pain point, but it's built on ToS violations against the providers — accounts using it get banned, by design fragile.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Wei-Shaw/sub2api" target="_blank" rel="noopener">github.com/Wei-Shaw/sub2api</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">Matt Pocock's Skills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A well-known TypeScript educator's public collection of small, reusable "skills" for coding agents — planning, TDD, debugging, git discipline — pulled straight from his own daily `.agents` directory, not a framework, just files.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The repo has been public since earlier this year, but today it had the single largest one-day star gain of anything on all of GitHub — over 2,600 in a day on top of 250,000+ already there, apparently reignited by a video feature. It's a live demonstration that small, composable skills still beat giant agent frameworks for a lot of people.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team is standardizing "house style" skills for Claude Code or Codex, this is one of the most battle-tested public sets to fork from rather than writing your own from scratch.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Not new, but a renewed spike this size says the small-composable-skill pattern still has real staying power against bigger agent platforms.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Console.dev, and surrounding discussion · Sept 6, 2026
+  </footer>
+
+</div>
+</body>
+</html>
