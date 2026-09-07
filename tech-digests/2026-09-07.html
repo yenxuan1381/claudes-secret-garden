@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 7, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 7, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people are actually running or arguing about right now — a local-first app that reviews an agent's git diff before it ever reaches GitHub, an open-source swarm that trades crypto with real money and no human in the loop, Nous Research's self-improving agent shipping a "society of bots" update, a one-file skill that makes agents write less code (and the benchmark fight it started), a free privacy-first dictation app, a skill built to scrub the tells out of AI-written prose, and a 38-diagram-type skill for making agent-generated docs look designed instead of default.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://gitwarren.com/" target="_blank" rel="noopener">GitWarren</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source desktop app that shows you exactly what a coding agent changed — staged, unstaged, even untracked files — as a real side-by-side review, entirely on your own machine before anything reaches a commit. It also runs as an MCP server with seventeen tools, so Claude Code, Codex, or any other agent can hand it a diff directly instead of you copy-pasting changes into a chat window.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Agents now write a large share of the diff in a lot of workflows, but reviewing that output usually means either trusting it blind or waiting for a browser-based PR review after it's already committed. GitWarren puts a real checkpoint before the commit — no account, no server, nothing ever leaves your laptop.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If you or your team run coding agents against anything sensitive — trading infrastructure, internal tooling, client data — this is a concrete way to add a human gate before agent output lands in git history, without adopting a new review SaaS or changing your workflow.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real, growing gap that most git tooling still ignores, but it's day-one software with zero track record yet.</span>
+      </div>
+      <div class="linkline"><a href="https://gitwarren.com/" target="_blank" rel="noopener">gitwarren.com</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/The-Swarm-Corporation/AutoHedge" target="_blank" rel="noopener">AutoHedge</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source Python framework that chains four AI agents — a director that writes a trading thesis, a quant that validates it, a risk manager that sizes the position, and an execution agent that places the order — into a loop that trades live Solana markets with no human in it. <code>pip install autohedge</code> and it's running.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's one of the most literal answers yet to "can I just let AI run a trading book" — thesis to execution, packaged as an installable library rather than a research paper. It's back on GitHub's daily trending list today, picking up 100+ stars in a day on top of an already sizable base.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Read the architecture, not the pitch — a four-agent swarm making live trading calls with no visible circuit breaker or backtest gate in the README is exactly the kind of black-box automation a risk desk should want to poke at before someone near your firm gets curious and points it at real capital.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Technically works and packages a real capability, but "autonomous trading, no human in the loop" is precisely the kind of system that blows up in the way risk managers get paid to prevent.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/The-Swarm-Corporation/AutoHedge" target="_blank" rel="noopener">github.com/The-Swarm-Corporation/AutoHedge</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Nous Research's open-source personal AI agent — one agent core that runs as a CLI, a Telegram/Discord/Slack bot, and a desktop app, with a learning loop that turns things it figures out into reusable skills and remembers you across sessions. It shipped its "Pantheon" release on August 31 — roughly 5,800 commits deep — adding Bot Mode, a set of named sub-agents with their own personas that talk to each other and to you like a small team.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most agent products reset to zero every session; Hermes is built explicitly around not doing that, and it's reportedly become one of the most-used open agents on OpenRouter as a result. It's back on today's trending list gaining 500+ stars in a day, riding momentum from last week's release.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The memory-across-sessions pattern is the real ingredient here, worth watching regardless of whether this specific project wins — "starts over from zero every time" is the single biggest daily friction with agent tools right now, and whoever fixes it well changes how much of your own agent workflow you have to re-explain each morning.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely influential design and real adoption, but the project has also drawn plagiarism allegations over the past few months — worth knowing before treating it as a clean reference implementation.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">github.com/NousResearch/hermes-agent</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">Ponytail</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A skill for coding agents that's just one ~100-line markdown file encoding a single idea: before writing new code, check whether it already exists in the codebase, the standard library, the platform, or a dependency you already installed. It's sitting at 130,000+ GitHub stars, with another 1,500+ gained today alone.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a live test of whether "good engineering judgment" can be distilled into a prompt rather than a framework — and it's sparked a real fight about it. A detailed Hacker News teardown showed a plain seven-word prompt beating Ponytail's own published benchmark numbers, forcing the author to revise them.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A cheap, low-risk experiment to drop into your own team's Claude Code or Codex setup this week — and a useful reminder that a skill's star count and its measured effectiveness are two different numbers, worth separating before you adopt anything else riding a viral spike.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">The idea (YAGNI, restated) is old and sound; what's new is the public benchmark fight over whether the skill adds anything beyond the sentence in its own README.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">github.com/DietrichGebert/ponytail</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/OpenWhispr/openwhispr" target="_blank" rel="noopener">OpenWhispr</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source dictation app for Mac, Windows, and Linux — hit a hotkey, talk, and it types what you said wherever your cursor is, using either a fully local model (Whisper or NVIDIA Parakeet, audio never leaves the device) or a cloud model for speed. No telemetry, no account, MIT-licensed.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Paid dictation tools like Wispr Flow charge a monthly subscription for essentially the same loop; OpenWhispr does it free and lets you choose whether your voice ever touches a server. It's sitting at roughly 5,500+ stars and still climbing.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A genuinely useful daily-driver swap if anyone on your team dictates notes, emails, or messages and doesn't want a recurring per-seat subscription — the local-only mode matters if you ever dictate anything you wouldn't want leaving the building.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Simple, working, and already has real users — the main risk is maintenance longevity for a small open-source team, not the core idea.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/OpenWhispr/openwhispr" target="_blank" rel="noopener">github.com/OpenWhispr/openwhispr</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">Humanizer</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A skill for writing agents that rewrites AI-drafted text to strip out the now-recognizable tells of LLM prose — the em-dash pileups, the "it's not just X, it's Y" constructions, the hedge-everything tone — using 35 patterns pulled from Wikipedia's own "Signs of AI writing" cleanup project. It shows its edits before handing you the final version.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>AI writing has developed a house style distinctive enough that people flag it on sight now, and that's become a real liability for anything meant to read as written by a person. This targets the actual patterns readers have learned to spot, not just a generic "make it sound human" instruction.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Useful and a little uncomfortable at once — genuinely handy for polishing client emails or reports drafted with AI so they don't read as stilted, but it's the exact same technique someone could point at a term paper or a filing to dodge AI-detection tooling, so the honest read is dual-use.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Clever and well-sourced, but a stylistic patch on a text-generation problem, not a new capability — and its more dishonest use cases are one prompt-target-change away.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">github.com/blader/humanizer</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">diagram-design</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A skill that gives coding agents 38 editorial-quality diagram templates — flowcharts, architecture maps, timelines — built as self-contained HTML and SVG with no JavaScript, no build step, and none of the default Mermaid look. Point an agent at your website and it can match your brand's fonts and colors in about a minute.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every agent-generated diagram before this looked the same — identical boxes, identical arrows, identical default theme — because that was the only easy option. This is one of the first widely-adopted attempts to make agent output actually look designed, and it's back on today's trending list gaining 600+ stars in a day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a nice quality-of-life upgrade if you use Claude Code or Codex to generate docs, decks, or process diagrams and are tired of everything looking like the same default chart.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A polish layer on an existing workflow, not a new capability — real, but a long way from load-bearing.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">github.com/cathrynlavery/diagram-design</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Hacker News, and surrounding discussion · Sept 7, 2026
+  </footer>
+
+</div>
+</body>
+</html>
