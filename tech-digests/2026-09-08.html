@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 8, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 8, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually looking at right now — a working Python interpreter squeezed into 1024 bytes of C, an indie map that time-lapses every building in Los Angeles since 1880, an AI agent that designs real circuit boards through KiCad, a context-optimization tool for coding agents that jumped from 250 to 20,000+ stars in days, a React framework that skips Electron entirely for native GPU rendering, and a very public benchmark fight over Microsoft's new grep tool.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/AZHenley/python1024" target="_blank" rel="noopener">python1024</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A working Python interpreter — function defs, loops, arithmetic, recursion, enough to run FizzBuzz — written in exactly 1024 bytes of plain C, no tricks or macros. The developer, Austin Henley, first tried to fit it in 512 bytes and gave up.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It hit the Hacker News front page today. Nobody needs a 1024-byte Python — the appeal is watching a language get stripped down to exactly what it needs to run, and nothing else.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool. No workflow angle here — it's a well-executed party trick, not a tool.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A blog-post artifact, not something anyone installs — but a genuinely clean piece of code golf.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/AZHenley/python1024" target="_blank" rel="noopener">github.com/AZHenley/python1024</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://flipso.com/p/6gmqy5dj3" target="_blank" rel="noopener">Every Building in LA</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An interactive 3D map where every building in Los Angeles is a box colored by the decade it went up — scrub a timeline from 1880 to 2026 and watch the entire city fill in from nothing, built by one indie web developer from open building-age datasets.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's on the Hacker News front page as of today, no framework or funding behind it — just a well-made personal data visualization that a lot of people are finding genuinely absorbing to click through.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool. Worth five minutes if you like cities or maps; no business read here.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A one-person hobby project, not open-source or a platform — but a nicely done one.</span>
+      </div>
+      <div class="linkline"><a href="https://flipso.com/p/6gmqy5dj3" target="_blank" rel="noopener">flipso.com/p/6gmqy5dj3</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/mixelpixx/Konnect" target="_blank" rel="noopener">Konnect</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A single Rust binary that plugs into KiCad 10 and exposes 226+ schematic, layout, routing, and manufacturing tools over MCP — so Claude or another LLM can design and review an actual circuit board directly, not just talk about one.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "AI agent gets a new skill" stories are still software-only; this hands an agent a real physical-design domain end to end. It's picked up 531 stars with 800+ commits, still explicitly labeled beta.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Only directly useful if your firm touches hardware (trading infra, sensors, devices) — but it's a clean signal of how fast agent tooling spreads into new domains once someone builds the MCP bridge, worth noting even if you never open KiCad.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real capability and active development, but the project itself says it still wants real-world mileage before you'd trust it on a board that matters.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mixelpixx/Konnect" target="_blank" rel="noopener">github.com/mixelpixx/Konnect</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">Context Mode</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A context-window optimization layer for AI coding agents — it sandboxes noisy tool output before it ever reaches your conversation (a 56KB browser snapshot becomes a few hundred bytes) and persists session memory in a queryable database, so an agent survives a context compaction instead of forgetting what it was doing.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>"The agent ran out of context and lost the thread" is one of the most common daily frustrations in agentic coding right now, and this targets it directly. By its own creator's account it went from around 250 stars to over 20,000 within days — one of the fastest jumps of anything trending this week.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly worth trying if your team runs long coding-agent sessions — the pain it fixes (context bloat, amnesia after compaction) is universal to every agent tool, not specific to one workflow.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">Solves a real, near-universal pain point and the adoption curve is happening in real time, not just claimed in a README.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">github.com/mksglu/context-mode</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/remorses/gpuix" target="_blank" rel="noopener">gpuix</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>React and TypeScript bindings for GPUI, the Zed code editor's own GPU-rendering framework — components render straight to Metal, DirectX, or Vulkan, with no Electron shell and no webview anywhere in the stack.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Electron's memory and startup overhead has been a standing complaint for years, and this is one of the first credible "write it in React, ship it fully native" answers. The creator's demo rendering 5,000 messages with zero webview is what's driving the spread on X right now; it's sitting at 1,700+ stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look if your team ever builds internal desktop tools — trading terminals, ops dashboards — where Electron's resource cost has been a recurring, quietly-accepted tax. Early, but a genuine alternative path.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">This framework class (React bound to native GPU rendering) has a history of stalling on edge cases like text layout and accessibility — worth watching, not yet betting on.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/remorses/gpuix" target="_blank" rel="noopener">github.com/remorses/gpuix</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/microsoft/tgrep" target="_blank" rel="noopener">tgrep, and the fight over it</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Microsoft open-sourced tgrep, a trigram-indexed grep that pre-builds a search index over a codebase so repeat searches skip a full rescan — already wired into GitHub Copilot CLI, claiming up to 52x faster search than ripgrep on huge repos. Within a day, independent developer Dmitriy Kovalenko published his own benchmark against a competing tool he built, fff, showing tgrep slower to search, far slower to build its index, and producing a larger index — and publicly called the codebase "vibe-coded."</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a real, numbers-on-the-table dispute over whether a big company's published benchmark claims survive independent reproduction, playing out in public within hours of release rather than staying a marketing line nobody checks.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The useful takeaway isn't the tool itself — it's the reminder that a vendor's benchmark numbers in a README are marketing until someone actually reproduces them, and here someone did, fast and publicly. Worth keeping in mind the next time a vendor pitch leans on a number nobody's checked.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising*</span>
+        <span class="stamp-note">The tool works and ships in a real product, but the independent benchmark pushback is the actual story here, not the tool's own claims.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/microsoft/tgrep" target="_blank" rel="noopener">github.com/microsoft/tgrep</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and X · Sept 8, 2026
+  </footer>
+
+</div>
+</body>
+</html>
