@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 9, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 9, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a Robinhood-backed macOS app that lets coding agents place real trades with visible guardrails, a one-file skill that makes agent replies ADHD-friendly, HeyGen's write-HTML-get-a-video framework shipping daily updates, a stealth browser built to slip agents past bot detection, a fleet-of-agents IDE with a release every day this week, and a 60-skill marketing playbook for agents.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/OpenTradeOSS/OpenTrade" target="_blank" rel="noopener">OpenTrade</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source macOS app that lets Claude Code or Codex agents place real trades in your Robinhood account through Robinhood's own new Agentic Trading API — with configurable guardrails: manual or automatic order approval, per-agent turn limits, and background scheduling so an agent can watch the market on its own clock.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Robinhood shipped an official agentic-trading interface, and this is one of the first tools wrapping it in a real desktop UI with actual approval gates and per-agent accounting, instead of handing an agent an API key and hoping.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly relevant — it's a concrete look at what "let an agent watch my portfolio and trade" looks like once a real brokerage builds a supported door for it, guardrails and all. Worth a look purely to compare a properly-scoped harness against the black-box autonomous-trading swarms that keep showing up elsewhere.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real brokerage-backed rails and visible guardrails, but day-one software — 199 stars — and its own README is blunt about the risk of live money.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/OpenTradeOSS/OpenTrade" target="_blank" rel="noopener">github.com/OpenTradeOSS/OpenTrade</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">i-have-adhd</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A one-file "skill" for coding agents that forces replies into an ADHD-friendly shape — lead with the next action, number every step, restate where things stand across turns, cut the tangents — installed with a single slash command.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Long, hedging agent replies that bury the actual answer is one of the most common daily complaints about coding agents, and this reframes the fix as an accessibility need rather than just "be more concise." It's climbed to 32,000+ stars, gaining 650+ today alone.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A five-minute install if agent replies ever leave you scrolling to find what actually happened — it's a prompt file, not a new tool, so there's nothing to break by trying it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real, widely-felt annoyance in something you can read in thirty seconds — though it's a formatting patch, not a new capability.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">github.com/ayghri/i-have-adhd</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">HyperFrames</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source framework from HeyGen that renders real MP4 video straight from a self-contained HTML/CSS/JS file — no React, no proprietary editor — playing the timeline in a headless browser and encoding it with FFmpeg, built so an agent that already knows HTML can go from a text prompt to a finished video with no manual editing step.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It shipped two release updates in the last two days alone — render-stability fixes, new lint rules, smarter media streaming — and its "write a webpage, get a video" pitch sidesteps the fact that agents are generally terrible at driving traditional video-editing tools.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a developer curiosity unless you produce content, but worth knowing about if your team ever needs explainer videos, data-viz clips, or social content generated programmatically — this turns that into a coding task instead of a video-editing one.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A genuinely novel answer to a real gap — agents can write HTML but can't drive a video editor — backed by a company with reason to keep shipping it, but still a young ecosystem.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">github.com/heygen-com/hyperframes</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/jo-inc/camofox-browser" target="_blank" rel="noopener">camofox-browser</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A drop-in replacement for Puppeteer/Playwright built on a patched Firefox fork that spoofs hardware fingerprints, WebGL renderers, and other browser tells at the C++ level, wrapped in a REST API meant for AI agents — the explicit pitch is bypassing Cloudflare and other bot-detection systems.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most agent-browsing tools get blocked constantly by anti-bot systems; this is a more technically serious attempt to make an agent look like a real human browser instead of working around detection with brittle tricks — it gained 870+ stars today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Useful if your own workflows depend on agents checking sites that block automated traffic — but it's explicitly built to defeat the same anti-scraping protections your own data providers or vendors may rely on, so the honest read is dual-use, worth a compliance gut-check before pointing it at anything you don't own.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising*</span>
+        <span class="stamp-note">Technically capable, but "bypass bot detection" tools live in a legal and ToS gray zone by design — the feature that makes it useful is also the liability.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/jo-inc/camofox-browser" target="_blank" rel="noopener">github.com/jo-inc/camofox-browser</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">Orca</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A desktop IDE that runs several coding agents — Claude Code, Codex, or others — at once, each working in its own real git worktree in parallel, so you can fan one task across five agents and pick the best diff instead of running them one at a time.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Running multiple agent sessions today usually means juggling terminal tabs and manually tracking which one is on which branch; Orca gives each agent real filesystem isolation and a proper review UI, and it's shipped a release every day or two through this week — most recently September 8 — on top of 64,000+ stars already.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth trying if anyone on your team runs coding agents seriously — comparing multiple agents' attempts at the same task before merging is a genuinely different workflow than running one and hoping, and it costs nothing beyond the agent subscriptions you already pay for.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a concrete workflow problem for anyone running agents at scale, with real, sustained shipping velocity behind it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">github.com/stablyai/orca</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/coreyhaines31/marketingskills" target="_blank" rel="noopener">marketingskills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free library of 60+ "skill" files that teach Claude Code or any compatible agent specific marketing playbooks — landing-page conversion audits, SEO structure, ad campaign setup, pricing strategy, competitor analysis — installed with one command so the agent applies the right framework when a task calls for it.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most agent-skill repos so far have targeted coding itself; this is one of the more complete attempts to extend the same pattern into a full non-engineering business function, and it's sitting at 49,000+ stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Genuinely usable if you or your firm ever needs marketing work done without hiring an agency — a competitor analysis or pricing-page audit an agent can run against a documented playbook is a real time-saver, even with a human still sanity-checking the output.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Practical and already popular, but it's a set of instructions applied by a general-purpose model, not a specialized tool — quality will vary with the underlying agent.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/coreyhaines31/marketingskills" target="_blank" rel="noopener">github.com/coreyhaines31/marketingskills</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Product Hunt, and surrounding discussion · Sept 9, 2026
+  </footer>
+
+</div>
+</body>
+</html>

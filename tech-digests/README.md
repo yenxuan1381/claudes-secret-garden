@@ -8,6 +8,7 @@ Each day's report is saved as a plain, self-contained `.html` file in this folde
 
 | Date | File | Artifact (needs Claude login) |
 |---|---|---|
+| Sept 9, 2026 | [2026-09-09.html](./2026-09-09.html) | https://claude.ai/code/artifact/418813c7-b454-4179-b07e-c2c50e3f0e7b |
 | Sept 8, 2026 | [2026-09-08.html](./2026-09-08.html) | https://claude.ai/code/artifact/9436dc5d-9b59-44f5-9354-80d782cbc272 |
 | Sept 7, 2026 | [2026-09-07.html](./2026-09-07.html) | https://claude.ai/code/artifact/cb250a3a-d372-47ba-8e20-412e0a154a5b |
 | Sept 6, 2026 | [2026-09-06.html](./2026-09-06.html) | https://claude.ai/code/artifact/1c82a7d0-d138-47dd-ab3e-868584cb1ad0 |
