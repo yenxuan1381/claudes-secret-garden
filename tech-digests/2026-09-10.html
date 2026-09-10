@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 10, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 10, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a local-first desktop workspace for AI coding agents that skips the cloud account entirely, Tencent's git-native tool for keeping a whole team's agent skills in sync, an autonomous coding agent built around a persistent Python REPL instead of a chat loop, a self-hosting platform that finally treats "living with the server" as the real problem, a browser-based 3D building editor agents can now drive over MCP, and one developer's weekend project to resurrect a 25-year-old forum script in Docker.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/vastsa/PI-Desktop" target="_blank" rel="noopener">PI-Desktop</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A local-first desktop app, built with Electron and Rust, that gives coding agents "a workspace of their own" — multiple projects and sessions, bring-your-own-model support for OpenAI, Anthropic, or a local model, and a permission layer that puts every privileged action behind a diff you approve.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most agent desktop apps quietly want an account and a cloud relay sitting between you and the model provider; this one explicitly doesn't require either. It's early — Early Preview, version 0.14.x — but picked up 400+ stars today alone off a base of 2,000.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look if your team runs agents against anything you'd rather not route through a third party's relay server — the permission-gated diff review is a concrete, checkable control, not just a policy you have to trust.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real architectural discipline (no forced account, real permission layer) but genuinely early software — 2,100+ commits of active churn, not a finished product yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/vastsa/PI-Desktop" target="_blank" rel="noopener">github.com/vastsa/PI-Desktop</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/Tencent/teamai-cli" target="_blank" rel="noopener">TeamAI-CLI</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A command-line tool, open-sourced by Tencent after using it internally since March, that keeps a team's agent skills, rules, docs, and MCP servers in one git repo and pushes updates out to everyone's Claude Code, Codex, Cursor, or OpenCode session automatically — changes go through a normal merge request first.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every team running coding agents ends up with slightly different, undocumented prompt and skill setups per developer; this makes "the agent knows our conventions" a synced, reviewable git artifact instead of something everyone maintains by hand. It launched September 7 and passed 2,700 stars two days later, still climbing.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your engineering org is standardizing on coding agents, this is the un-sexy but genuinely useful piece — a reviewable, git-gated way to roll out compliance-approved prompts and skills firm-wide instead of relying on tribal knowledge in Slack.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real, unglamorous coordination problem with a simple mechanism (git + a hook) rather than new infrastructure — the kind of tool that tends to stick.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Tencent/teamai-cli" target="_blank" rel="noopener">github.com/Tencent/teamai-cli</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/PrimeIntellect-ai/prime-agent" target="_blank" rel="noopener">Prime Agent</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A coding agent built around a persistent Python REPL instead of a turn-by-turn chat loop — context lives as variables, subagents are just function calls that run in parallel or in the background, and a <code>/goal</code> command keeps an objective alive across sessions until it's actually done, paused, or cancelled.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most coding agents forget everything the moment the session ends; this treats "keep working on this for hours or days, reattach when I check in" as the default mode rather than a workaround. It's from Prime Intellect, a research-driven infra team, not a big platform vendor, sitting at 20,500+ stars with commits landing within the last day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The interesting angle isn't code completion — it's long-running unattended work: a backtest sweep, a data-pipeline migration, a report that takes hours to assemble, checked on periodically rather than babysat turn by turn.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">A genuinely different architecture (programmatic, persistent, code-as-context) rather than a wrapper on the usual chat loop — the kind of bet that either reshapes how agents are built or quietly fades; too early to know which.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/PrimeIntellect-ai/prime-agent" target="_blank" rel="noopener">github.com/PrimeIntellect-ai/prime-agent</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/cloud-in-a-bottle/cloud-in-a-bottle" target="_blank" rel="noopener">Cloud in a Bottle</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source personal cloud from Imbue — point it at a Raspberry Pi, an old laptop, or a cheap VPS and it installs apps like Nextcloud, Immich, or Home Assistant as rootless containers with automatic HTTPS, unified login, and automatic backups and updates already wired up.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Self-hosting tools have spent a decade optimizing the install step; this one's actual thesis, after six months of private testing, is that install was never the hard part — living with the thing afterward (certs, updates, backups, auth) is what makes people give up and go back to SaaS. It launched September 5 and its Hacker News thread pulled 429 points and 205 comments.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A real option if you or your firm want specific data (client files, internal notes, a personal archive) off third-party SaaS entirely without taking on a part-time sysadmin job to keep it patched and backed up — the "living with it" framing is the part most self-hosting tools get wrong.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Backed by a real team (Imbue) with six months of testing behind the launch and strong initial reception, but the hardest self-hosting test — years of unattended uptime — hasn't happened yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/cloud-in-a-bottle/cloud-in-a-bottle" target="_blank" rel="noopener">github.com/cloud-in-a-bottle/cloud-in-a-bottle</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/pascalorg/editor" target="_blank" rel="noopener">Pascal Editor</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source, local-first 3D building editor that runs in the browser on WebGPU — walls, slabs, roofs, doors, levels, zones — with a CLI and MCP server layered on top so an AI agent can now generate or edit an actual building model directly instead of just talking about floor plans.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's been building a following for months as a free, fast alternative to expensive CAD software like Revit for conceptual modeling; the new agent-facing MCP layer is what's driving today's trending spot, gaining 100+ stars in a day on top of 23,000+ already.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool unless your work touches commercial real estate or facilities — but if it does, "describe a floor plan, get an editable 3D model an agent can iterate on" is a genuinely faster loop than the usual CAD-and-email cycle.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Established product with real users in a niche most agent tooling ignores, but conceptual-modeling-only — no structural or MEP analysis — caps how far it goes on its own.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/pascalorg/editor" target="_blank" rel="noopener">github.com/pascalorg/editor</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://www.thran.uk/writ/devlog/2026/09/phpbb-144-in-docker.html" target="_blank" rel="noopener">phpBB 1.4.4 in Docker</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>One developer's writeup of getting phpBB 1.4.4 — the last release of the forum software before it got famous, built for PHP 3 and a high-trust, pre-security-conscious web — running in a modern Docker container, patching cookie handling, SQL seeding, and blank-page crashes that PHP 5's stricter type coercion broke along the way.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It made the Hacker News front page this week purely on the appeal of the archaeology — getting 21-year-old code with no concept of prepared statements to boot on a stack it was never designed for, and being upfront about the security tradeoffs of doing so.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool. No workflow angle — it's a well-told war story about legacy software, not a tool anyone adopts.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A one-off nostalgia project with real technical craft in the writeup, not something that goes anywhere beyond itself.</span>
+      </div>
+      <div class="linkline"><a href="https://www.thran.uk/writ/devlog/2026/09/phpbb-144-in-docker.html" target="_blank" rel="noopener">thran.uk/writ/devlog/2026/09/phpbb-144-in-docker.html</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending, Hacker News, and surrounding discussion · Sept 10, 2026
+  </footer>
+
+</div>
+</body>
+</html>
