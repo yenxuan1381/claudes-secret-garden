@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 11, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 11, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people are actually running or arguing about right now — a European startup shipping 18 on-device AI models that beat cloud APIs on speed and energy, an open-source "spy satellite" globe stitching public flight, ship, and satellite feeds into one live map, a hackathon-built autonomous trading bot with zero risk disclaimers loose on 1,000+ real markets, a hardware-aware tool that tells you which open LLM your laptop can actually run, an editorial-diagram skill for coding agents that replaces default Mermaid ugliness, a free AI gateway routing across 352 model providers with built-in token compression, and a browser physics toy that makes special relativity visible at walking speed.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://desertant.com/" target="_blank" rel="noopener">Desert Ant Labs</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A newly launched European AI lab shipping 18 small models — for audio, vision, and text — built to run entirely on-device with no cloud call and no login. Its speech model transcribes 10 minutes of audio in 2 seconds on an iPhone, and its video model claims to cut a 10-minute clip into highlights 10x faster and using roughly 470x less energy than calling a frontier cloud model for the same job.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "small model" launches are a benchmark table; this shipped working SDKs the same day, is free up to 100,000 monthly active devices, and posted numbers people could actually try and check — it hit the Hacker News front page on September 10 with 480 points.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look for any product idea where sending user audio/video/text to a cloud API is the privacy or latency objection — on-device transcription or summarization at these speeds changes the cost-benefit of building that feature in-house versus punting on it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real shipped SDKs and checkable numbers on day one, not just a pitch deck — the open question is whether a small new lab can keep 18 models maintained and current.</span>
+      </div>
+      <div class="linkline"><a href="https://desertant.com/" target="_blank" rel="noopener">desertant.com</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">God's Eye View</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source browser app that stitches together live public data feeds — flights, ships (via AIS), satellites, earthquakes, traffic, wildfires, even city traffic cameras — onto a single photorealistic 3D globe, with voice control so you can just ask it to find and track things.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every one of its data sources (OpenSky, AISStream, CelesTrak, USGS, NASA FIRMS) was already public and free; nobody had bothered to unify them into one live, explorable globe with this level of polish. It hit #1 on GitHub Trending in August and is back on top again today, past 25,000 stars, and the README is explicit that person-tracking and face-recognition PRs "won't be merged."</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>This is the free, hobbyist-grade version of the alternative-data feeds (ship AIS, satellite imagery) that funds already pay for to track shipping routes and industrial activity — not a replacement for a real data desk, but a fast way to see what that category of signal actually looks like before deciding whether it's worth a paid subscription.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A genuinely useful aggregation layer over data that was already public, with a real stated ethics line — but it's a viewer, not an analysis or alerting tool yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">github.com/bilawalsidhu/gods-eye-view</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/alsk1992/CloddsBot" target="_blank" rel="noopener">CloddsBot</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source autonomous trading agent, built on Claude during a 12-day Solana hackathon, that trades across 1,000+ real markets — Polymarket, Kalshi, Binance, Hyperliquid, plus five EVM chains — and takes instructions over Telegram, Discord, or Signal instead of a dashboard.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's trending on GitHub today off genuinely broad market coverage and an agent-to-agent payment protocol for machine-to-machine trades — but its README has no risk disclaimer, no explanation of position sizing or loss limits, and it's already sitting at 1,900+ stars and 10,700+ clones in two weeks.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The useful thing here isn't the bot — it's the contrast with a properly-guardrailed agent-trading tool (like the Robinhood-backed one covered here two days ago) that puts manual approval and per-agent limits front and center. This is the other end of that spectrum: real capital, hackathon-grade code, zero stated safeguards. A good gut-check for how much diligence "AI trading agent" claims actually need.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Real breadth of market coverage, but hackathon-quality code with real money and no visible risk controls is closer to a demo than something to trust with capital.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/alsk1992/CloddsBot" target="_blank" rel="noopener">github.com/alsk1992/CloddsBot</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/AlexsJones/llmfit" target="_blank" rel="noopener">llmfit</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A terminal tool that reads your CPU, RAM, GPU, and VRAM, then tells you which of a curated database of open LLMs will actually run well on your machine — scored for quality, speed, and context length across quantization formats, with results you can benchmark and contribute back.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Picking a local model today usually means guessing at a HuggingFace model card and hoping it doesn't crash your machine two gigabytes in; this turns that guesswork into one command. It's an established project (1,170+ commits, 35,900+ stars) getting a fresh trending spike today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A genuinely practical five-minute install if anyone on your team runs local models for privacy-sensitive work — it removes the trial-and-error of finding a model that fits, rather than adding a new capability.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a small, real annoyance well and has the star count and commit history to show it's not a one-off — useful utility rather than a big bet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/AlexsJones/llmfit" target="_blank" rel="noopener">github.com/AlexsJones/llmfit</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">diagram-design</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A skill for Claude Code, Codex, and other coding agents that generates 38 types of self-contained, editorial-quality diagrams — Sankey, fishbone, Wardley maps, dependency graphs, UML — as plain HTML and SVG instead of the flat, boxy default Mermaid output most agents fall back to.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Anyone who's asked a coding agent for a diagram knows the "Mermaid slop" problem this explicitly names; this pulls your brand's colors and type from your website in about a minute and applies them consistently across every diagram type. It's trending today on the back of a v2.5.10 release adding ten new layout types.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A real time-saver if you or your team use agents to produce internal reports or decks — a properly-styled dependency graph or Wardley map an agent can generate on request beats hand-building one in a diagramming tool.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Narrow but genuinely well-executed — it fixes a specific, widely-felt output-quality gap rather than adding a new capability.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">github.com/cathrynlavery/diagram-design</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank" rel="noopener">OmniRoute</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source AI gateway that gives you one API endpoint in front of 352 model providers (150+ of them free) and 1,200+ models — Claude, GPT, Gemini, DeepSeek, and more — with automatic fallback when a provider hits its quota and built-in compression claimed to cut token usage 15-95%.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every team building on LLM APIs eventually hits provider rate limits or wants a cheaper fallback model without rewriting their integration; this is a maintained, community-built (550+ contributors) answer to that instead of a one-off proxy script, with a release cadence of multiple updates a week.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly useful if your team's product or internal tools call multiple LLM APIs — the auto-fallback and compression are the kind of unglamorous infrastructure that quietly reduces both API spend and outage risk.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, actively-maintained answer to a cost and reliability problem every LLM-backed product eventually hits — the compression claims are worth verifying on your own workload before trusting the top-end number.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/diegosouzapw/OmniRoute" target="_blank" rel="noopener">github.com/diegosouzapw/OmniRoute</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://rivendell.dmitrybrant.com/relativity/" target="_blank" rel="noopener">Relativity Park</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A browser simulation of a park where the speed of light is 5 km/h — a brisk walk — so length contraction, time dilation, Doppler shift, and Terrell rotation all become visible on ordinary objects as you move around, instead of staying abstract equations.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It made the Hacker News front page today purely because it makes special relativity intuitive in a way no textbook diagram manages — 556 points and 245 comments of people describing what finally "clicked" for them.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool. No workflow angle — it's a beautifully made teaching toy, not something you adopt.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A one-off browser demo with real craft behind the physics, not a tool or a platform — but a genuinely great one of its kind.</span>
+      </div>
+      <div class="linkline"><a href="https://rivendell.dmitrybrant.com/relativity/" target="_blank" rel="noopener">rivendell.dmitrybrant.com/relativity</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 11, 2026
+  </footer>
+
+</div>
+</body>
+</html>
