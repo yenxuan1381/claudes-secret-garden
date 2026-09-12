@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 12, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 12, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people are actually running or arguing about right now — a solo-built MCP server that cut one coding agent's context usage by 98% and hit #1 on Hacker News, a research agent that verifies its own citations instead of just handing you a paragraph, a free voice-cloning model spanning 600+ languages that runs 40x faster than real time, a desktop app that turns your documents into a growing linked wiki instead of a forgetful chatbot, a solo developer's self-hosted CRM for WhatsApp-first sales businesses, a featherweight database client with an AI agent built in, and an agent that compresses a three-day math-modeling competition into about an hour.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">Context Mode</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An MCP server that sits between a coding agent and its tools, catching everything they return — file reads, API responses, web pages, shell output — and storing it in a local, indexed database instead of dumping it straight into the model's context window, handing back only a small pointer that can be looked up again later.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Anyone who runs coding agents seriously has watched a single Playwright snapshot or GitHub issue dump eat half the context window within 30 minutes; the maintainer's own numbers show 315KB of tool output shrinking to 5.4KB without losing the ability to retrieve it. It hit #1 on Hacker News this week (570+ points) and jumped past 22,000 stars, gaining 200+ in a single day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team runs agents against real codebases or data pipelines, context burn is a direct cost and reliability problem — this is the unglamorous plumbing that decides whether a long agent session finishes the job or chokes on its own tool output halfway through.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A working fix for a widely-felt cost and reliability problem, not just a benchmark claim — but it's one more piece of middleware every agent workflow now leans on, built and maintained by one person.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">github.com/mksglu/context-mode</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/jordan-gibbs/hyperresearch" target="_blank" rel="noopener">Hyperresearch</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source research agent that runs a 16-step pipeline — gather sources, cross-check contradictions, verify citations, adversarially review its own draft — to turn 250+ sources into one report, then keeps a persistent, searchable vault of everything it found so the next research task builds on top of it instead of starting cold.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "AI research" tools throw sources away the moment they hand you a paragraph; this treats sourcing and verification as the actual product. It's a solo project (built by Jordan Gibbs) that's already leading a public research-agent benchmark and sitting at 2,900+ stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>For due diligence, competitor scans, or building an internal archive of filings and news, a tool that shows its sources and checks them against each other is a meaningfully more trustworthy starting point than a one-shot chatbot summary — still needs a human check before anything reaches a client.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real technical depth aimed at a genuine trust problem in AI research tools, but new and single-maintained — too early to call it more than promising.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/jordan-gibbs/hyperresearch" target="_blank" rel="noopener">github.com/jordan-gibbs/hyperresearch</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/k2-fsa/OmniVoice" target="_blank" rel="noopener">OmniVoice</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source text-to-speech model that clones a voice from a short reference clip, or builds one from scratch by describing traits like age, gender, and accent, across more than 600 languages — and runs about 40x faster than real time.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Voice cloning this fast and this broad in language coverage has mostly stayed locked behind paid APIs; this is a free, self-hostable model good enough to come with a fresh arXiv paper and pull 12,500+ GitHub stars within days.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Cuts both ways: genuinely useful if you need multilingual voiceovers or IVR prompts without a subscription, but also a concrete reminder of how cheap convincing voice cloning has gotten — worth flagging to anyone who still treats a phone call as an identity check.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real capability jump in an open model, but the same properties that make it useful make it a live fraud-vector concern worth a compliance conversation.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/k2-fsa/OmniVoice" target="_blank" rel="noopener">github.com/k2-fsa/OmniVoice</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/nashsu/llm_wiki" target="_blank" rel="noopener">LLM Wiki</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A desktop app that reads your documents — PDFs, EPUBs, web clips — and instead of just answering questions about them like typical RAG, incrementally builds a linked wiki out of them, complete with a knowledge graph and source citations back to the original file.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Chat-with-your-docs tools give an answer and forget everything; this gives you a growing, browsable reference that gets more useful the more you feed it. It's picked up nearly 19,000 stars, gaining 600+ in a single day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If you or your team maintain a pile of research notes, filings, or internal memos nobody re-reads after the first pass, this turns that pile into something searchable and cross-referenced automatically — a real alternative to the usual "dump it in a vector database and hope" approach.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A genuinely different, more durable take on personal knowledge management than standard RAG chat — new enough that long-term reliability of the auto-generated wiki is still unproven.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/nashsu/llm_wiki" target="_blank" rel="noopener">github.com/nashsu/llm_wiki</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/melgarafael/DeskcommCRM" target="_blank" rel="noopener">DeskcommCRM</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, self-hosted CRM built specifically for businesses that sell over WhatsApp, with built-in AI agents that answer customer questions, follow up automatically, and log everything — no monthly SaaS fee, runs on your own server.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>WhatsApp-first sales is huge outside the US (Latin America, parts of Asia and Africa) and underserved by CRM incumbents built around email and web forms; this is a solo developer's answer that's grown to 1,500+ stars and 500+ forks with real production features — role-based access, audit logs, multi-tenant support — rather than a toy demo.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete example of how a single developer with an AI-agent framework can now ship something that used to take a small engineering team — worth watching as a template for what "vibe-coded but production-grade" business software looks like once the audience genuinely needs it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real users and real feature depth filling a gap incumbents ignore — the ceiling is how far one maintainer can support a multi-tenant product long-term.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/melgarafael/DeskcommCRM" target="_blank" rel="noopener">github.com/melgarafael/DeskcommCRM</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/t8y2/dbx" target="_blank" rel="noopener">dbx</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A 20MB desktop database client that connects to more than 90 different databases — Postgres, MySQL, SQLite, Redis, MongoDB, and more — with a built-in AI assistant and an MCP server so a coding agent can query your database directly instead of you copy-pasting schema into a chat window.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The default heavyweight option (DBeaver) needs a Java runtime and feels it; this is a fraction of the size, covers more database types, and treats "let an AI agent look at my data" as a first-class feature. It's already at 19,000+ stars with 30+ contributors and gained 250+ stars today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A genuinely useful swap if anyone on your team pokes at databases regularly — smaller, faster, and the MCP integration means an agent debugging a data pipeline can inspect the actual database state instead of guessing from a schema dump.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real everyday annoyance well and is actively maintained enough to trust, though it's competing in a crowded field of database GUI tools.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/t8y2/dbx" target="_blank" rel="noopener">github.com/t8y2/dbx</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://github.com/jihe520/MathModelAgent" target="_blank" rel="noopener">MathModelAgent</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An AI agent system that automates entire mathematical modeling competitions — reading the problem, choosing a model, writing and debugging the code, generating charts, and producing a submission-ready paper — in about an hour instead of the three days competitors normally get.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a clean example of an agent handling an entire multi-day, multi-skill workflow — research, code, writing — end to end rather than one narrow task, and it just switched from a custom multi-agent framework to a portable "skill" format that works across Claude Code, Codex, and other harnesses. It's gained 5,000+ stars, 129 today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a niche academic use case (built for student contests like MCM/ICM), but the underlying pattern — agent handles analysis, code, and a polished writeup as one pipeline — is the same shape as automating an internal research memo or a first-pass financial model; worth a look as a template more than a tool you'd deploy directly.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Genuinely useful for its actual audience and instructive as an end-to-end agent pipeline pattern, but not something outside that niche adopts as-is.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/jihe520/MathModelAgent" target="_blank" rel="noopener">github.com/jihe520/MathModelAgent</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 12, 2026
+  </footer>
+
+</div>
+</body>
+</html>
