@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 13, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 13, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a solo-built Claude Code mega-toolkit that hit 250,000+ stars and is now splitting its own users over bloat, a tiny CLI that finally makes running a dozen coding agents on one repo painless, an open-source music model that edges out Suno on its own benchmark, a curated library of offensive-security "skills" for AI agents built for red teams, a live battle show where AI agents fight each other and mostly built the show themselves, and a Hacker News reader that filters out the AI-hype posts.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">Everything Claude Code (ECC)</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A single developer's kitchen-sink toolkit for Claude Code and other coding agents (Codex, Cursor, OpenCode) — bundling 260+ "skills," sub-agents, persistent memory, and a built-in security scanner into one install. Built out of the creator's own daily use over 10+ months and open-sourced in January, it has since grown past 250,000 GitHub stars.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's become one of the default answers to "how do I make my coding agent actually good" — but its own users are now split: bug reports reading "my .claude is bloated" and requests for config cleanup sit right next to people who say it transformed their workflow, and version 2.0 shipped this week trying to address exactly that.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team is standing up any serious Claude Code-based internal tooling, ECC is a preview of where an unmanaged agent setup ends up at scale — worth reading the bloat complaints before you install skills you'll never actually use.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">Already one of the most-used pieces of agent infrastructure around, with a real, ongoing debate about whether more skills and more automation is actually the right direction.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">github.com/affaan-m/ECC</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener">worktrunk</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A small CLI, built by one maintainer (known for the PRQL and Xarray projects), that turns Git's clunky worktree commands into three simple ones — so you can run five or ten coding agents against the same repo at once without them stepping on each other's changes.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Anyone running multiple AI coding agents in parallel has hit the "each agent needs its own working copy, and Git makes that annoying" problem; this just removes the friction, and it's quietly become the most popular tool built specifically for that job, resurfacing on GitHub's trending list again today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If anyone on your team runs parallel Claude Code or Codex sessions against the same codebase — internal dashboards, scripts, backtests — this is unglamorous plumbing that removes a genuine daily annoyance rather than adding a new capability.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A narrow, well-built fix for a problem more teams will hit as agent-parallel workflows become normal — not flashy, but the kind of tool that sticks.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener">github.com/max-sixty/worktrunk</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/multimodal-art-projection/YuE" target="_blank" rel="noopener">YuE2</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source music generation model that takes lyrics and a style prompt, writes an editable melody-and-chord plan, then renders a full song with vocals and accompaniment — and lets you go back, tweak the plan ("make the bridge more melancholic"), and re-render it instead of starting over.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Its own benchmark numbers edge out Suno v5, and unlike closed tools, it's free, self-hostable, and its intermediate output is human-readable musical notation rather than a black box — though the paper itself admits the margin over Suno "does not establish statistical significance."</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Not a finance workflow tool, but relevant if you touch marketing or content ops — free, iterable, royalty-free background music or jingles removes a real recurring cost. Otherwise, mostly just cool.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A genuine capability jump for an open model with an unusually honest paper about its own limits — worth watching, not yet a clear Suno replacement.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/multimodal-art-projection/YuE" target="_blank" rel="noopener">github.com/multimodal-art-projection/YuE</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/SnailSploit/Claude-Red" target="_blank" rel="noopener">Claude-Red</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A library of 78 (and growing toward ~130) structured "skill" files that each teach Claude a specific offensive-security technique — SQL injection, EDR evasion, exploit development — so a red-teamer can point an agent at a target with expert methodology already loaded, instead of writing the tradecraft out by hand each time.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Built by an independent security researcher for authorized red-team engagements, bug-bounty triage, and CTF prep, it's a clean preview of what "off-the-shelf attacker skill packs for AI agents" look like now that agent skill systems are mainstream — and it's trending on GitHub today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly useful if your firm runs internal penetration tests on trading or customer-facing infrastructure, but also worth a threat-model conversation either way — the same packaged methodology is exactly what a less scrupulous actor would point at you.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely well-organized tradecraft aimed at legitimate red-team use, but dual-use by design — the README states "authorized" use without much enforcement beyond that.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/SnailSploit/Claude-Red" target="_blank" rel="noopener">github.com/SnailSploit/Claude-Red</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://clawfight.dev/" target="_blank" rel="noopener">Clawfight</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A live "battle show" where AI agents fight each other as cartoon crab avatars, complete with synthesized voice lines and generated replays — and the matchmaking, commentary, and operations behind the show were built and are run largely by a small swarm of Claude Code and OpenClaw agents, with the creator mostly supervising.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's less interesting as a game than as a build story: a real, live, continuously-running product stood up largely by autonomous agents rather than a one-off demo, and it drew a strong Show HN discussion today about what "babysitting agents" actually looks like day to day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — but a genuine data point on how far "let agents run a small product with light human supervision" has actually gotten, if you've been wondering whether that's real yet or still a pitch-deck claim.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Fun and a real proof of concept for lightly-supervised agent operations, but the game itself is a novelty, not a business.</span>
+      </div>
+      <div class="linkline"><a href="https://clawfight.dev/" target="_blank" rel="noopener">clawfight.dev</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://www.unslop.news/" target="_blank" rel="noopener">unslop.news</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A stripped-down Hacker News reader that runs an AI-text detector over every submission to filter out stories and posts that read as AI-hype or AI-written, leaving mostly the links and discussion the community shares organically. A companion site, allslop.news, does the reverse — showing only the AI-flagged content.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It landed right as "the AI flood on my favorite feed" became a widely-shared complaint — several people independently shipped near-identical filters within days of each other this week, which says as much about the mood as any one tool does.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A genuinely useful five-minute bookmark if you use Hacker News as a tech-signal source and are tired of wading through hype posts by hand — cuts noise without cutting off the feed.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A personal utility, not a platform, but it names a real and growing frustration precisely and several builders converging on it independently is itself the signal.</span>
+      </div>
+      <div class="linkline"><a href="https://www.unslop.news/" target="_blank" rel="noopener">unslop.news</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 13, 2026
+  </footer>
+
+</div>
+</body>
+</html>
