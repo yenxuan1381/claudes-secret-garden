@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 14, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 14, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Five things people are actually running or arguing about right now — a pure-C inference engine that streams a 2.8-trillion-parameter model off an ordinary SSD, an open-source system that turns a coding agent into a full video production studio, a hardened skill registry built as a direct answer to the "13% of agent skills are vulnerable" problem, a research-agent platform that runs parallel scientific experiment loops with git-native lineage tracking, and a fully-local voice studio that clones, dubs, and narrates without a cloud dependency in sight.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">colibri</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A pure-C inference engine, built by one developer, that runs frontier mixture-of-experts models — up to 2.8 trillion parameters — on ordinary consumer hardware by treating VRAM, RAM, and disk as one memory hierarchy. A small dense core stays resident in RAM while the ~19,000 routed experts stream in from an SSD only when the router actually needs them, with prefetching and an LRU cache hiding the disk latency.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Until now, running a model this size meant renting a rack of GPUs; colibri's premise — "a JIT, but for weights" — makes a 2.8T-parameter model bootable on a machine with a decent SSD and no dependencies beyond a C compiler. It gained 868 stars today alone, on top of 30,700+ already, with zero external libraries and Apache 2.0 licensing.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If self-hosting a large open model has ever looked attractive for compliance or cost reasons and been ruled out on hardware grounds, this changes that math — worth a proof-of-concept before assuming frontier-scale inference still requires a cloud GPU bill.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could be big</span>
+        <span class="stamp-note">A genuine architectural idea, not a wrapper — if the latency numbers hold up under real workloads, it resets what "self-hosted" means for the largest open models.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">github.com/JustVugg/colibri</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/calesthio/OpenMontage" target="_blank" rel="noopener">OpenMontage</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source system of 12 production pipelines and 700+ skill files that turns a coding agent like Claude Code or Cursor into a video production studio — researching a topic, writing the script, pulling real archival footage from Archive.org and NASA, generating voiceover, and editing the final cut, instead of just spitting out one AI-generated clip.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "AI video" tools hand you a single generated shot; this treats a video the way a real production team would — research, script, assets, edit, quality-gated review — and it can cut from licensed archival footage rather than only synthetic clips. It hit #1 on GitHub Trending today at nearly 59,000 stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team ever needs an explainer, an internal training video, or a quick earnings-recap clip and doesn't have a video person on staff, this is a real alternative to a freelancer or a stock-footage subscription — worth testing on a low-stakes internal piece before trusting it with anything client-facing.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely ambitious pipeline design and real trending traction, but output quality at this level of automation is still unproven outside demo reels.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/calesthio/OpenMontage" target="_blank" rel="noopener">github.com/calesthio/OpenMontage</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/tech-leads-club/agent-skills" target="_blank" rel="noopener">Agent Skills</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A curated, security-scanned registry of "skills" for Claude Code, Cursor, Copilot, and other coding agents — every entry passes static analysis and a vulnerability scan and ships with an integrity lockfile, instead of being an unvetted community upload like most agent-skill marketplaces.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The maintainers cite a Snyk finding that over 13% of marketplace skills contain critical vulnerabilities — a real, quantified version of the "installing a skill is installing someone else's code" problem the whole agent ecosystem has been shrugging off. It's picked up 5,900+ stars with 265 gained today.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly useful if your team has started letting Claude Code or Cursor pull in community skills — this is the kind of vetted-source policy an internal security review would ask you to have anyway, already built.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Addresses a real, cited risk rather than a hypothetical one, though its value depends entirely on the registry staying smaller and better-curated than it is comprehensive.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/tech-leads-club/agent-skills" target="_blank" rel="noopener">github.com/tech-leads-club/agent-skills</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener">OpenResearch</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source platform that turns a coding agent into a research agent capable of running the full scientific loop — propose a hypothesis, write and run the experiment, inspect the evidence, decide what to try next — with each direction explored in its own isolated git worktree and folded into a git-native "experiment tree" that preserves the lineage of every run.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Instead of one agent running one script once, OpenResearch runs many hypotheses in parallel and makes every result reproducible from an immutable commit — a structural answer to the "AI ran an experiment, now what did it actually do" trust gap, and it can run locally, over SSH, or on a Slurm/Kubernetes cluster. It's new (2,300+ stars) but gained 289 today off real trending momentum.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The pattern here — many parallel, reproducible, lineage-tracked experiment runs instead of one opaque chat session — maps directly onto quant research and backtesting workflows; worth a look as a template for a firm's own internal research-agent tooling rather than something to adopt wholesale.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A structurally sound idea for making agent-run experiments trustworthy and reproducible, still early enough that its real-world hit rate on genuine research questions is unproven.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener">github.com/alphaXiv/OpenResearch</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, fully-local desktop app — built by one developer — that bundles 16 text-to-speech and 11 speech-recognition engines into one studio for voice cloning, video dubbing, system-wide dictation, and multi-voice audiobook creation across 646 languages, with everything running on-device instead of through a cloud API.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's the application layer that a raw voice-cloning model (like the OmniVoice model covered here on the 12th) needs to actually be useful day to day — dubbing, dictation, and audiobook export in one AGPL-licensed package with no per-character billing. It gained 2,632 stars today alone, past 27,800 total.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The local-only design is the real pitch for finance: dubbing an earnings call or narrating an internal memo without audio ever leaving the building sidesteps a data-handling conversation a cloud voice API would force — worth a look anywhere client or market-sensitive audio is involved.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A well-built, genuinely complete local voice studio, but it's competing in an increasingly crowded field of local TTS tools chasing the same ElevenLabs-alternative niche.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">github.com/debpalash/VoiceStudio</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 14, 2026
+  </footer>
+
+</div>
+</body>
+</html>
