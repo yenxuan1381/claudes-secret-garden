@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tech Discoveries — Sept 16, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 16, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Five things people are actually running or arguing about right now — a browser-based "spy satellite simulator" built entirely on real public data feeds, Homebrew's first official macOS GUI after years of holding the CLI line, a git-like version control system built specifically for auditing what multiple coding agents changed and why, an Android decompiler fast enough that a security researcher is already finding real high-severity bugs with it, and a self-hosted CRM that bolts native AI sales agents onto WhatsApp.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">God's Eye View</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A browser app that renders a photorealistic 3D globe and layers live public data onto it — flights (OpenSky/adsb.lol), ships (AISStream), satellites (CelesTrak), earthquakes (USGS), traffic, and public city cameras — so you can zoom from the whole planet down into the cockpit of a tracked flight. Everything runs locally in the browser off inspectable, open-source code, with no private or paid data involved.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's the kind of "classified ops room" visual that used to require a defense contractor's budget, built entirely from feeds anyone can query for free — and the maintainer explicitly refuses to add named-person search or face recognition, drawing a real ethical line most surveillance-flavored demos skip. It's climbed to 35,200+ stars off a single creator's release.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Funds already pay for AIS ship-tracking and flight data as alt-data signals (port congestion, supply-chain disruption); this is a free, slick front end onto some of the same public feeds — good for a junior analyst's sanity check, not a Bloomberg terminal replacement, since the README itself warns the data can be delayed or wrong.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely well-built and useful beyond the wow factor, but it's a visualization layer on data that was already public — the value is the polish, not new information.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">github.com/bilawalsidhu/gods-eye-view</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/Homebrew/BrewUI" target="_blank" rel="noopener">BrewUI</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A native SwiftUI app, published under the official Homebrew GitHub org, that lets you discover, install, update, and remove Homebrew packages through a GUI instead of the terminal — while staying transparent about exactly which underlying Homebrew commands it's running.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Homebrew has fielded requests for an official GUI for years while a graveyard of unofficial third-party attempts came and went; this is the project itself finally shipping one, built with Swift 6 strict concurrency and launching Homebrew only through a locked-down shell. It's climbed to 1,700+ stars in its first stretch.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Low direct finance relevance — mostly just cool, and a small quality-of-life win if your team runs dev machines on macOS and has non-terminal-comfortable people managing their own tooling.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A genuinely notable milestone for one of the most-used dev tools on macOS, but a package-manager GUI is a convenience, not a capability nothing else had.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Homebrew/BrewUI" target="_blank" rel="noopener">github.com/Homebrew/BrewUI</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/pacifio/atlas" target="_blank" rel="noopener">Atlas</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A desktop app billed as "source control for agents" — it lets you run several coding agents (Claude Code, Codex, others) against the same repo at once, and every run produces a checkpoint that links the resulting commit back to the exact prompts, tool calls, and reasoning that produced it.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>As soon as more than one agent (or one person plus an agent) touches the same codebase, "which change came from where and why" stops being a rhetorical question; Atlas answers it structurally instead of relying on commit-message discipline. It's cross-platform (macOS, Windows, Linux via Tauri) and Apache-2.0 licensed, with 4,800+ stars and active weekly releases.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>This is the direct workflow angle: if your team is letting Claude Code or similar touch internal tooling, an auditable link from every commit back to the prompt and reasoning behind it is exactly the kind of trail a compliance or infosec review will eventually ask for — worth piloting now rather than retrofitting later.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real and growing problem (multi-agent accountability) with a structural fix rather than a policy document, though it's still young enough that its UX under heavy daily use is unproven.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/pacifio/atlas" target="_blank" rel="noopener">github.com/pacifio/atlas</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/MG1937/ASC" target="_blank" rel="noopener">ASC</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A fast Android decompiler front-end for mobile security researchers and AI agents — instead of indexing an entire APK up front like jadx does, it queries the compiled file directly like a database and decompiles only the specific class or method you ask for, in around 177 milliseconds using ~141MB of RAM.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most Android reverse-engineering tools force a slow global-index step before you can search anything; ASC skips straight to the target, which matters a lot when a script or an agent loop is firing off hundreds of targeted lookups instead of one human doing one decompile. A security researcher on X reported switching from jadx to ASC and finding several high-severity vulnerabilities with it within days.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Relevant if your firm runs security review or due diligence on mobile banking/trading apps (your own or an acquisition target's) — a real, independently-validated speed-up for that specific job, not a demo.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Backed by a real third-party testimonial of finding actual vulnerabilities, not just benchmark numbers — still a niche tool, but a proven one.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/MG1937/ASC" target="_blank" rel="noopener">github.com/MG1937/ASC</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/melgarafael/DeskcommCRM" target="_blank" rel="noopener">DeskcommCRM</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A self-hosted, open-source CRM built around WhatsApp — native AI agents handle inbound chat, qualify leads, and move deals through a Kanban-style pipeline, positioned as a free alternative to paid platforms like Kommo, Octadesk, and Intercom.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>For businesses that actually sell over WhatsApp (extremely common outside the US), the paid alternatives charge per-seat and per-conversation; this is the same shape of product — multi-tenant, RBAC, choice of Anthropic/OpenAI/OpenRouter as the model provider — that you run on your own server instead. It's picked up 3,000+ stars with real production-looking release history (v1.24 already shipped).</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Concrete "opens a business" angle: this is a legitimate, no-license-fee starting point if you or a client wants to spin up a WhatsApp-first sales operation without committing to a SaaS contract on day one — worth a real evaluation, not just a curiosity.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A complete, self-hostable product replacing a real recurring SaaS cost, though it inherits all the usual self-hosting maintenance burden that the SaaS fee was paying to avoid.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/melgarafael/DeskcommCRM" target="_blank" rel="noopener">github.com/melgarafael/DeskcommCRM</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 16, 2026
+  </footer>
+
+</div>
+</body>
+</html>

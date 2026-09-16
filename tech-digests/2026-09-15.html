@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 15, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Masthead */
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+/* Entries */
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 15, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Five things people are actually running or arguing about right now — an Alibaba-built code review agent that claims 9x lower token cost than a general coding agent doing the same job, a scraping CLI that gives agents free eyes on Twitter and Reddit by routing around the official APIs entirely, a one-line skill that stops coding agents from burying the answer under preamble, a plugin ecosystem taking root around a vendor-independent open-source agent, and a solo-built 3D anatomy explorer that turns a public dataset into a real study tool.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">Open Code Review</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An AI code-review CLI that started as Alibaba's internal reviewer — two years and tens of thousands of developers in — now open-sourced. It splits the job in two: a deterministic pipeline catches known bug classes (null pointers, thread-safety, XSS, SQL injection) directly, and an LLM agent with codebase-search tools only gets called in for judgment calls, instead of dumping the whole diff on a model and hoping.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Its own benchmark claims meaningfully higher precision than a general coding agent (like Claude Code) doing ad hoc review with the same underlying model, while burning roughly a ninth of the tokens — a real architecture bet that narrow-plus-deterministic beats general-purpose for a bounded job. It's the fastest climber on GitHub trending today, up to 25,700+ stars with 1,571 gained in a day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team already leans on Claude Code or Cursor for PR review, this is a concrete benchmark to test against whatever ad hoc review prompt you're running — the pattern (deterministic checks first, LLM only where reasoning is actually needed) is worth stealing even if you don't adopt the tool itself.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real architectural claim backed by production use at Alibaba's scale, not a demo — though the benchmark numbers are self-reported and it's a big company's internal tool, not an indie build.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">github.com/alibaba/open-code-review</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">Agent-Reach</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A CLI that gives an AI agent read-and-search access to Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu and a dozen other platforms — with zero API fees or keys. It works by wrapping existing third-party scraping tools per platform rather than calling official APIs, and keeps any cookies or tokens it needs stored locally, never uploaded.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Official platform APIs for this kind of monitoring are expensive and rate-limited (X's API pricing alone rules most people out); this sidesteps that entirely. It's already past 81,000 stars, with 651 gained today alone.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Genuinely useful for a cheap sentiment or chatter-monitoring pipeline on a name or ticker without paying for X's API — but it's built on unofficial scraping wrappers whose terms of service the platforms themselves don't sanction, so treat it as a research tool, not something to wire into anything client-facing or compliance-sensitive.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real, expensive problem for free, but rests on scraping tools that can break the moment a platform changes its markup — fragile by design, not a stable integration.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">github.com/Panniantong/Agent-Reach</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">i-have-adhd</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A tiny skill for Claude Code, Cursor and other coding agents that forces terse, action-first replies — lead with the next step, number multi-step work, restate state across turns, no "Hope this helps!" filler — instead of the usual meandering preamble before the actual answer.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It names a universal annoyance with agent output — the real answer buried three paragraphs down — and fixes it with pure prompt discipline, no model change required. It's climbed to 45,800+ stars fast, purely on people installing it and telling others.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Not a workflow-changer, but a genuinely useful one-line install if you're tired of scrolling past preamble to find what an agent actually changed — mostly just cool, and a nice signal of what people actually want from agent output right now.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A clever prompt trick rather than a technical achievement, but its speed of adoption says something real about how much agent verbosity is grating on people.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">github.com/ayghri/i-have-adhd</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/rlaope/oh-my-hermes" target="_blank" rel="noopener">Oh My Hermes</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A plugin for Hermes Agent — Nous Research's open-source, self-hosted, vendor-independent coding agent that runs on anything from a $5 VPS to a GPU cluster — adding per-model prompt routing, a long-term memory system, and packaged expert workflows on top of it.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The "skills and plugins" ecosystem that exploded around Claude Code this year is now visibly spreading to competing, vendor-independent agent platforms — a sign the pattern is becoming infrastructure rather than one company's feature. It's early (2,300+ stars) but growing off real daily traction.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If you're keeping a list of self-hosted agent options for compliance reasons — data that can't leave your own infrastructure — Hermes Agent plus this plugin is a concrete, actively-developed entry to put on it, worth a proof-of-concept rather than a production bet yet.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Early and single-maintained, but a real data point on how fast the agent-plugin-ecosystem pattern is generalizing beyond the vendor that popularized it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/rlaope/oh-my-hermes" target="_blank" rel="noopener">github.com/rlaope/oh-my-hermes</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/ashemag/human-atlas" target="_blank" rel="noopener">Human Atlas</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, browser-based 3D anatomy explorer built on the open BodyParts3D dataset — 2,234 individually selectable meshes across 15 anatomical systems, with search over 3,432 named structures, exploded views, X-ray and cutaway modes, and a study mode with spaced-repetition quizzes.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It takes a niche, publicly-licensed academic dataset (CC BY 4.0) that mostly sat unused and turns it into something as polished as a paid med-school study app — built solo with React and Three.js, already at 3,500+ stars.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>No finance angle here — mostly just cool, and a good reminder of how far one person with modern web tooling can stretch a free public dataset into something genuinely useful.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A well-executed personal project rather than a business, but a clean, free, and complete tool in its own small niche.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/ashemag/human-atlas" target="_blank" rel="noopener">github.com/ashemag/human-atlas</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 15, 2026
+  </footer>
+
+</div>
+</body>
+</html>
