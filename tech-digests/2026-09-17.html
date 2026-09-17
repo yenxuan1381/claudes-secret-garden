@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 17, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 17, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a solo-built native Raycast alternative that runs real Raycast extensions, a Princeton recurrent-transformer architecture that independent implementers are already replicating, a portability tool that finally lets you export your own chat history out of Claude Code, Cursor, and every other coding agent, a self-hosted "personal cloud OS" for running your dev agents behind a VPN instead of a vendor sandbox, Cloudflare's own open-source multi-phase security-audit skill for coding agents, and an indie iPhone/Android app that teaches languages by talking, not drilling.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/abue-ammar/tinycast" target="_blank" rel="noopener">Tinycast</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A fully native macOS launcher, hotkey switcher, and clipboard manager built solo in Swift — under 100MB of RAM, 3MB on disk, zero third-party dependencies, no Electron, no telemetry — pitched as a lightweight Raycast alternative.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It doesn't just copy Raycast's UI, it runs real Raycast extensions natively in SwiftUI and can import your existing Raycast setup straight from your .rayconfig export — so switching costs approach zero for anyone with years of Raycast workflows already built.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team leans on Raycast daily for search and quick actions, this is a free, privacy-respecting, no-account swap worth a week's trial given how cheaply your existing extensions carry over.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuinely solves the Electron-bloat-and-telemetry complaint with real extension compatibility, but it's one person's macOS-only project competing with a well-funded incumbent.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/abue-ammar/tinycast" target="_blank" rel="noopener">github.com/abue-ammar/tinycast</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" target="_blank" rel="noopener">Recurrent Looped Transformer</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A research architecture out of Princeton that replaces a transformer's fixed stack of layers with a recurrent decoder looping over its own final hidden state, paired with a causal encoder that builds a global key-value memory — aiming to make a model's reasoning depth unbounded by however many layers it was trained with.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "make the model think longer" tricks today happen at inference time (more sampling, longer chain-of-thought); this proposes baking unbounded depth into the architecture itself — and it moved fast enough that a well-known independent ML implementer (lucidrains) already shipped a working implementation in the same window, which is a real signal, not just an arXiv upload nobody touched.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Nothing to deploy yet — this is a research bookmark, not a tool — but worth tracking as one of the few architectural ideas this month getting fast independent replication instead of silence.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real technical interest from a credible independent implementer, but unproven at any meaningful scale and far from anything production-ready.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" target="_blank" rel="noopener">github.com/yifanzhang-pro/recurrent-looped-tranformer</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/kruzovic7/ai-data-extractor" target="_blank" rel="noopener">ai-data-extractor</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free CLI that finds and extracts your own local chat history from AI coding assistants — Claude Code, Cursor, Windsurf, Aider, Cline/Roo Code — into one normalized JSONL file, auto-detecting where each tool stores its data across macOS, Linux, and Windows.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every one of these tools locks your own conversation history inside its own local format with no export button; this is the missing "get my data out" utility for a whole category of software people use every day, useful for switching tools, backing up history before a local database gets cleared, or just auditing what you actually asked an agent to do.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team wants leverage to switch coding-agent vendors later, or just an audit trail of prompt/response history that isn't trapped in a proprietary local DB, this is a low-effort way to stop being locked in by default.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, narrow gap filled cleanly, though it's young (461 stars) and only as durable as its per-tool parsers, which will need upkeep as each vendor's storage format changes.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/kruzovic7/ai-data-extractor" target="_blank" rel="noopener">github.com/kruzovic7/ai-data-extractor</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/agentverse-os/AgentVerse-OS" target="_blank" rel="noopener">AgentVerse-OS</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A one-command installer that turns an Ubuntu box into a personal "cloud OS" — a browser-based windowed desktop with isolated workspaces running VS Code, Claude Code, and Codex, a store of 944 self-hostable apps, and automatic backups — reachable only over Tailscale, with nothing exposed to the open internet.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a concrete answer to "I want my coding agents running on a machine I actually control, not a rented cloud sandbox, without hand-rolling the networking and app stack myself" — Rust core, Svelte UI, VPN-only by design rather than bolted on as an afterthought.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If data-residency or compliance concerns have kept your team off cloud-hosted agent sandboxes, this is a real template for a self-hosted alternative worth a pilot — but it's alpha, single-user, with no accounts or permissions yet, so nowhere near production.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real self-hosting gap with a sane security default, but it's still running on one test box with no multi-user support — very early.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/agentverse-os/AgentVerse-OS" target="_blank" rel="noopener">github.com/agentverse-os/AgentVerse-OS</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source skill you install into Claude Code and similar agents that runs a structured, multi-phase security audit — reconnaissance, coverage-led vulnerability hunting, candidate validation, then independent verification of every finding — instead of one agent eyeballing a diff and guessing.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>A single LLM pass over code for "find the bugs" is notoriously noisy — false positives and missed real issues both; this pipeline forces every candidate finding through a separate verification pass before it's reported, and it requires explicit confirmation you're authorized to test the target before it runs.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly usable as a fast first pass on your own codebase or an approved pentest target before a human security review — it's built by Cloudflare's own security team, so the methodology carries real institutional weight, not just a hobbyist prompt.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A legitimate, well-scoped tool from a credible source, though like any AI-assisted pentest it still needs a human to validate every finding before acting on it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">github.com/cloudflare/security-audit-skill</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/Chuloo/mural" target="_blank" rel="noopener">Mural</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source native iPhone and Android app for learning a language by talking to an animated voice orb — it adjusts difficulty in real time from how well you're doing in the conversation, connects directly to OpenAI with your own API key, and keeps all learning history and progress on-device.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most language apps gamify vocabulary drilling; this skips straight to open conversation practice with live difficulty adjustment, and because it's bring-your-own-API-key with local-only storage, there's no subscription and no server holding your data.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — no finance or workflow angle, but a clean example of what a small team can ship now that voice-capable models are cheap and fast enough to power live conversation practice instead of scripted lessons.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Solid execution for a one-person/small-team build, but it's a build-from-source hobby project with no App Store listing yet, not a business.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Chuloo/mural" target="_blank" rel="noopener">github.com/Chuloo/mural</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 17, 2026
+  </footer>
+
+</div>
+</body>
+</html>
