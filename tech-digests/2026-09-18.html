@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 18, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 18, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — TypeSafe's "System One" model Jev, which promises 20-200x cheaper AI decisions and dominated Hacker News for two straight days, a browser agent that used it to book a flight in 7.1 seconds, a Claude Code plugin that swaps lossy context-compaction summaries for Jev's verbatim triage, Tencent's open-source bridge that lets agents drive your real logged-in browser tab, a tiny esoteric language where even the type system is made of untyped lambdas, and a cursor-chasing website mascot you can redesign just by describing it.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noopener">Jev (TypeSafe AI)</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A new kind of AI model from TypeSafe, a stealth startup founded by ex-OpenAI/ChatGPT researcher Diogo Almeida — instead of generating text, Jev takes an unstructured state as input and returns typed, calibrated-probability decisions in one parallel query, with no autoregressive token generation at all.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>A huge share of production LLM calls today aren't really "conversations" — they're classify, score, or route decisions dressed up as chat completions; TypeSafe claims Jev does that specific job 20-200x faster and 40-400x cheaper than frontier models (70-500ms latency, input at $0.042/million tokens, output free), which if it holds up removes a real cost-and-latency tax that every agent pipeline currently pays.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth watching if any of your team's tools lean on an LLM purely for judgment calls — fraud flags, document triage, deal-stage detection — since a cheap, fast decision layer sitting apart from your reasoning model is a real architectural pattern now, not a hypothetical one.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">It sat atop Hacker News for two days straight (a 256-comment thread) and other builders are already shipping real things on top of it within 48 hours — but it's an early-access proprietary API from a startup that was in stealth until this week, so the durability of the headline numbers is still a vendor claim, not an independent benchmark.</span>
+      </div>
+      <div class="linkline"><a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noopener">typesafe.ai/blog/introducing-system-one-models-and-jev</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/browser-use/jev-ultrafast" target="_blank" rel="noopener">jev-ultrafast</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source browser agent from browser-use (an existing browser-automation startup) that uses Jev to pick both the action and the exact target element on a webpage in a single request, instead of the usual screenshot-then-reason loop most browser agents run.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's the first concrete proof of Jev's pitch outside a vendor benchmark: the agent searched a real Zürich→London flight on Google Flights in 7.1 seconds for $0.0039, with no site-specific script and no pre-written field strings — because skipping screenshots and only generating text when an operation actually needs it (like typing a city name) is where the speed comes from.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A live preview of what "instant" browser automation could mean for pulling data or filling forms on sites you're already using — compliance filings, portal data pulls, competitor-price checks — the exact category of task that's normally slow because of the screenshot-per-step loop.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, working, open-source demo with a concrete number attached, not a slide — but it's under 2,000 lines, one day old, and entirely dependent on Jev, a proprietary API that hasn't been proven at production scale yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/browser-use/jev-ultrafast" target="_blank" rel="noopener">github.com/browser-use/jev-ultrafast</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/tamaratran/fast-jev-compaction" target="_blank" rel="noopener">fast-jev-compaction</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free Claude Code plugin that replaces the agent's built-in "summarize old messages" context compaction with a single Jev call — every tool call and result gets scored for relevance, and whatever survives is kept completely verbatim instead of being compressed into a lossy summary.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Standard LLM-summarized compaction is notoriously lossy — an exact file path, error string, or constraint can silently disappear from the summary right when it matters later; this only ever deletes, never rewrites, because scoring "is this still relevant" is cheap and fast with a decision model where summarizing prose is not.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly relevant if you run long Claude Code sessions the way this one is — worth trying yourself, since it targets a familiar, concrete annoyance (the agent quietly losing a detail after auto-compaction) rather than a hypothetical one.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real everyday pain point cleanly and falls back to normal summarization if Jev can't compress enough — but it's brand new (1.9k stars, days old) and adds a dependency on an external paid API for every single compaction.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/tamaratran/fast-jev-compaction" target="_blank" rel="noopener">github.com/tamaratran/fast-jev-compaction</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/Tencent/BrowserSkill" target="_blank" rel="noopener">BrowserSkill</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source CLI-plus-browser-extension from Tencent that lets any shell-capable AI agent (Claude Code, Cursor, Codex, and others) drive a separate "Agent Window" that shares your real, already-logged-in browser session — instead of spinning up a blank, signed-out automation browser.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most browser-automation tools for agents start from a fresh, logged-out browser, so every task hits a login wall or a captcha; this borrows your actual signed-in session, hands control back to you for captchas or confirmation dialogs, and never touches your regular browser windows while it works.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly useful the moment you want an agent to pull data from or act inside a site you're personally signed into — a data portal, an internal dashboard, a research subscription — without standing up a separate service-account integration just for that.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">MIT-licensed, cross-agent, and already at 4.7k stars with a sane security model — separate window, human-in-the-loop for sensitive steps — though it comes from a large company rather than an indie team, and reliability across arbitrary sites is still untested at scale.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Tencent/BrowserSkill" target="_blank" rel="noopener">github.com/Tencent/BrowserSkill</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/kserrec/attalambda" target="_blank" rel="noopener">AttaLambda</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A tiny experimental programming language, posted to Show HN, where everything — booleans, lists, numbers, even the type system itself — is built out of nothing but untyped one-argument lambda functions, wrapped in ordinary Lisp-shaped syntax.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a clean, working answer to a question language designers actually argue about — how much of a "real" language, types, data structures, arithmetic, can you get for free out of pure lambda calculus alone — and it ships with real runtime type checking on top, not just a theory paper.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — no workflow or business angle here, just a small, well-executed "prove a point" project that's genuinely fun to read even if you'll never write a line of it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">An elegant, well-built teaching example with 6 stars — not aiming at practical adoption, and it isn't trying to be.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/kserrec/attalambda" target="_blank" rel="noopener">github.com/kserrec/attalambda</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/nilbuild/page-mascot" target="_blank" rel="noopener">page-mascot</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source website widget by Kamran Ahmed (creator of roadmap.sh) that adds a little cursor-following character to a page — it turns its head to track your mouse and blinks when you click it, with 53 premade styles or an AI skill that draws you a custom one from a text description.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It turns what used to be a custom animation job into a two-minute npm install, and the "describe a mascot, get matching sprite sheets" AI-drawing option is a genuinely fun, low-stakes use of image generation for something purely decorative.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a nice personality touch for a marketing site or internal tool if you want one, nothing more.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Polished and well-made (696 stars, MIT) but decorative by design, not useful in any deeper sense.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/nilbuild/page-mascot" target="_blank" rel="noopener">github.com/nilbuild/page-mascot</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 18, 2026
+  </footer>
+
+</div>
+</body>
+</html>
