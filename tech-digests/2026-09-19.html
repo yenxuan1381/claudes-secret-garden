@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 19, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 19, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people are actually running or arguing about right now — a solo-built C engine that runs 2.8-trillion-parameter models on a laptop, a free open technique that answers the closed "Jev" pitch by reading a model's raw logits instead of generating text, an MCP bridge that lets an agent drive a real TradingView desktop app, a self-hosted search engine over your own browsing history, a live warning that Rust maintainers are being personally targeted to backdoor crates, a native Mac Photoshop alternative built by one person, and an e-ink bird-ID picture frame running entirely offline.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">Colibrì</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A single ~2,400-line C program, built solo, that runs mixture-of-experts LLMs by streaming "expert" weights off disk instead of loading a whole model into GPU memory. It lets models as large as 2.8 trillion parameters (DeepSeek V4 Flash, Kimi K3, Qwen3.8, and others) run on ordinary consumer hardware — no cluster, no BLAS, no Python.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Running frontier-scale open models has always meant renting a GPU farm; treating disk, RAM, and VRAM as one memory hierarchy removes that requirement, and it was built with llama.cpp-style "one dedicated person, one file" engineering rather than a company's SDK.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team wants to run large open-weight models in-house for data-sensitive work instead of sending it to a vendor API, this is the first credible free path to doing that on a workstation rather than a six-figure GPU bill — worth a serious pilot.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">It gained over 6,000 stars in a single week (36k+ total) on demonstrated capability alone, and "frontier models on small hardware" has obvious downstream uses well beyond hobbyists.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">github.com/JustVugg/colibri</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/TheoLeeCJ/SemIf" target="_blank" rel="noopener">SemIf</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source technique that lets an AI agent make a fast yes/no or multiple-choice decision by reading probabilities straight off a language model's final layer, instead of generating a sentence and parsing it back into an answer. It runs in under 5 milliseconds on CPU, Nvidia CUDA, or Apple's own chips, versus the 500ms-5000ms a normal chat round-trip takes for the same decision.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most of what agent pipelines call "reasoning" is really a router or classifier decision wearing a chat costume; skipping the generate-then-parse loop removes real latency and cost wherever that pattern shows up — and it's a free, open, model-agnostic answer to the same problem the closed, proprietary "Jev" API (covered here Sept 18) charges for. The repo's README even calls itself out as independent of Jev/TypeSafe.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If a fraud flag, document-routing, or deal-stage classifier in your stack currently burns a full chat completion just to answer "yes or no," this is a drop-in, no-vendor-lock-in way to make that call near-instant and effectively free — the kind of infra change that shows up directly in your AI compute bill.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A sharp, narrow idea with working multi-backend code and real GitHub trending traction (1,600+ stars), but it's very new and untested at production scale by anyone outside its own repo.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/TheoLeeCJ/SemIf" target="_blank" rel="noopener">github.com/TheoLeeCJ/SemIf</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/tradesdontlie/tradingview-mcp" target="_blank" rel="noopener">tradingview-mcp</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source bridge that lets Claude Code or any MCP-compatible AI agent read charts, write and debug Pine Script, and navigate multi-pane layouts inside a real, locally running TradingView Desktop app — by talking to it through Chrome DevTools Protocol, the same low-level channel browser automation tools use.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most "AI plus trading" tools are either a chatbot bolted onto a data feed or an autonomous bot that trades for you; this instead wires an agent into the actual GUI-only professional charting tool a human analyst already uses, assisting an existing workflow rather than replacing or reinventing it.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>This one's squarely in your lane — a free, working proof that an AI agent can drive a real trading terminal well enough to build and debug indicators on request is worth trying against your own TradingView setup, if only to see how far the automation goes before you'd trust it with anything real.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real traction (6,500+ stars, 2,700 forks) for a genuinely narrow, sensible integration — but it's an interface layer, not a signal or execution product, and it lives or dies on TradingView's UI not changing underneath it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/tradesdontlie/tradingview-mcp" target="_blank" rel="noopener">github.com/tradesdontlie/tradingview-mcp</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/asciimoo/hister" target="_blank" rel="noopener">hister</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, self-hosted search engine for your own past — it indexes the web pages you've visited and files you keep, then makes them searchable through a web UI, a terminal, or MCP so an AI assistant can query your own history directly. Everything stays local, with no telemetry and no cloud sync.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>"I know I saw this somewhere" is a universal problem that today usually means either paying a company to hold your browsing history or just giving up; this solves it without handing that data to anyone, and the MCP hook means it doubles as durable long-term memory for whatever AI agent you already run.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A private, queryable archive of everything you've read and researched is a real productivity tool for continuous research work — letting your own agent search it directly instead of you re-Googling something you already found last month is a concrete workflow upgrade, not just a nice-to-have.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">One of the biggest single-day star gains on GitHub trending today (+889 in a day, 5,000+ total) with a multi-year, actively maintained commit history behind it — though indexing your own life always carries some setup and upkeep cost.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/asciimoo/hister" target="_blank" rel="noopener">github.com/asciimoo/hister</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://blog.rust-lang.org/2026/09/17/targeted-attacks/" target="_blank" rel="noopener">Targeted Attacks on Rust Maintainers</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>The Rust security team published a public warning this week that named maintainers of popular crates are being individually targeted with fake recruiter or business video calls, tricked into running a "missing codec" installer or pasting a clipboard command that hands over control of their machine. It's the same technique that briefly compromised three real crates.io packages in August through a typosquatted build-script dependency.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>This isn't vague "AI will hack everything" fear — it's a specific, documented mechanism (a malicious build script run during a normal <code>cargo build</code>) that already worked once, aimed at the small number of humans who can push updates to packages millions of projects depend on.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your engineering org pulls from crates.io, npm, or PyPI — nearly everyone does, transitively — this is a live reminder that your real attack surface is the handful of maintainers behind those dependencies, not just your own code. Worth a five-minute reminder to your team about video-call and clipboard-paste hygiene.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Rated above "toy" because ignoring it has genuine consequences — a real, current, well-documented threat with a specific technical mechanism, even though it's a warning rather than a tool.</span>
+      </div>
+      <div class="linkline"><a href="https://blog.rust-lang.org/2026/09/17/targeted-attacks/" target="_blank" rel="noopener">blog.rust-lang.org/2026/09/17/targeted-attacks</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/robbietilton/Compositor" target="_blank" rel="noopener">Compositor</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, fully open-source, native Mac image editor with real professional features — layers, masks, blend modes, adjustment layers, background removal, liquify, spot healing, clone stamp — written in Swift rather than bolted together in Electron. One person built it as an actual Photoshop alternative, not a stripped-down compromise.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every open-source image editor before this has either been Electron-heavy or GIMP's famously unfriendly interface; a native, fast, genuinely full-featured free alternative to a $20+/month subscription is the kind of thing people have wanted for years without anyone shipping it solo.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a cost-and-tooling note rather than a business angle — if anyone on your team does routine image editing purely to avoid a Creative Cloud seat, this is now a real, no-subscription option worth trying.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Nearly 1,000 stars, an actual tagged 1.0 release, and a community Linux port already forked off it within days — a real signal people plan to build on it, not just star it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/robbietilton/Compositor" target="_blank" rel="noopener">github.com/robbietilton/Compositor</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://github.com/arnegiacomo/fugleramme" target="_blank" rel="noopener">Fugleramme</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A Raspberry Pi and e-ink photo frame that listens through a microphone for birdsong, identifies the species locally with an open-source bird-sound model, then displays a hand-picked 1800s-style natural history illustration of that exact bird — no cloud, no internet connection, no AI-generated art, just 800+ curated public-domain illustrations. It's been running for weeks from a kitchen window in Bergen, Norway.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a complete, working, genuinely charming answer to "what's that bird outside my window," built end-to-end by one person purely because they wanted it to exist — and it landed one of the biggest Show HN threads of the week.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — no workflow or business angle, just a well-executed reminder that local, on-device AI inference is now cheap and reliable enough for a hobby project like this to simply work.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Not trying to be anything more by design, but genuinely one of the best-received "someone built a nice thing" stories of the last two days (2,300+ Show HN points).</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/arnegiacomo/fugleramme" target="_blank" rel="noopener">github.com/arnegiacomo/fugleramme</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 19, 2026
+  </footer>
+
+</div>
+</body>
+</html>
