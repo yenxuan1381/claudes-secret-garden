@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 20, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 20, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a solo Rust/Tauri app that zips an entire web app and its database into one shareable file, a headless bridge that lets AI agents drive China's dominant video editor without a GUI, proof that TypeSafe's much-hyped Jev model had at least six independent open clones within 48 hours of launch, a live trading bot that lets an AI make one buy/sell call per blockchain block (and is currently losing money, honestly reported), a 68-year-old onion futures ban getting a creative legal test from a new SF company, and a browser flight simulator built purely so you can stare out the window.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://withcapsule.app/" target="_blank" rel="noopener">Capsule</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo-built Rust/Tauri app that packs an entire HTML web app — its interface, media, and a full SQLite database — into a single portable <code>.capsule</code> file. Open it on macOS, Windows, or Linux and it launches instantly with all your data already inside, no server or account involved.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Building a small local HTML tool has always been easy; giving it somewhere to save data and a way to hand it to someone else has not — this collapses "app plus database plus hosting" into one file you can email, AirDrop, or drop in Slack like a PDF, with UUID-stamped entries so two copies can be merged back together later.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A genuinely useful pattern for a one-off internal tool — a deal tracker, a scenario model, a client intake form — that needs to survive being passed between three people's laptops without anyone standing up a database or paying for hosting.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A clean, well-executed answer to a problem every solo builder has hit, fresh off a strong Show HN reception — but it's early days for a new file format nobody else's software can open yet.</span>
+      </div>
+      <div class="linkline"><a href="https://withcapsule.app/" target="_blank" rel="noopener">withcapsule.app</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/mcncarl/jianying-headless" target="_blank" rel="noopener">jianying-headless</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A bridge that lets Claude Code, Codex, or any shell-capable AI agent build and export real video projects in Jianying — ByteDance's CapCut-equivalent editor, dominant in China — entirely from the command line, with export running in an isolated process that never touches your account or the internet.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Jianying, like most consumer video editors, has no public API — every edit normally means clicking through its GUI by hand; this exposes draft-building, verification, and rendering as an agent-callable "skill," turning a point-and-click app into something a script or an AI can drive unattended.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly relevant if your team touches short-form video content production — automating template-driven video generation at scale is the direct use case, though it's tied to one specific Chinese app most Western teams don't run.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Actively maintained with real fixes landing daily and 1,600+ stars in its first days, but it's a "private source preview" — the interesting reverse-engineering work isn't fully open, and it depends on an unofficial hash-matched build of Jianying that could break on any update.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mcncarl/jianying-headless" target="_blank" rel="noopener">github.com/mcncarl/jianying-headless</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in" target="_blank" rel="noopener">Six Clones of Jev in Two Days</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>TypeSafe's "Jev" — the closed, proprietary decision-model API that dominated Hacker News this week (covered here Sept 18) — launched September 15. Within 48 hours, independent developers had shipped at least six working open-source alternatives doing the same core trick: NanoJev, jevlike, laya, and OpenJev among them, catalogued by the AI newsletter Latent.Space.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Jev's pitch was a fast, cheap, typed-decision model with no autoregressive generation — a genuinely useful idea, but apparently not a hard one to replicate once the shape of the trick was public; several of the clones were training and shipping working demos (mazes, Snake, trading bots) inside 48 hours of the original blog post.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>This is the more important story than Jev itself: if a startup's headline model can be functionally cloned by solo developers in two days, that's a live data point on how thin AI-model moats actually are right now — worth factoring into how you value any startup whose pitch is "we have a model nobody else has."</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Not because any single clone matters, but because the pattern — proprietary model launches Monday, open replicas ship by Wednesday — is a real and repeatable signal about where AI competitive advantage is (and isn't) actually sitting.</span>
+      </div>
+      <div class="linkline"><a href="https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in" target="_blank" rel="noopener">latent.space/p/ainews-here-are-6-clones-of-jev-in</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/jarrodwatts/jev-trader" target="_blank" rel="noopener">jev-trader</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source bot that lets Jev make one real buy/sell decision every ~300ms on the Kuru MON-USDC order book, posting a post-only limit order one tick inside the market on each new blockchain block. No private key, and it dry-runs against the real book with simulated fills instead.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's a rare "AI trading bot" repo that's honest about its own results instead of just claiming edge — the top open issue is literally titled "It's losing money," with the maintainer and contributors publicly working through why quoting every single block costs more in missed spread than it earns.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a skim less as a strategy and more as a clean, public worked example of the actual economics of quote-every-block market making with an LLM in the loop — the kind of latency-vs-edge tradeoff that shows up in any automated market-making system, laid out in public issues rather than a pitch deck.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Currently losing money by its own admission, on a single illiquid pair — genuinely useful as a transparent case study, not as a working strategy.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/jarrodwatts/jev-trader" target="_blank" rel="noopener">github.com/jarrodwatts/jev-trader</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://www.onionfutures.com/" target="_blank" rel="noopener">San Francisco Onion Futures Company</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A new company selling private, transferable contracts for future delivery of yellow onions, priced month by month from October 2026 to March 2027 — a product that, on paper, is exactly the instrument the 1958 Onion Futures Act banned after two traders cornered the Chicago onion market.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>The Act specifically bans onion futures traded "on or subject to the rules of any board of trade" — so this sells the same economic exposure as a private bilateral contract instead, betting that the letter of a 68-year-old law doesn't reach a structure Congress never anticipated. It's a real, live test of a genuinely odd corner of commodities law, not a thought experiment.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A fun one for a finance background specifically — a clean illustration of how a narrowly worded, decades-old statute creates exploitable gaps once the market structure it assumed (centralized boards of trade) stops being the only way to get exposure to a price.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Won HN's front page (375+ points) on novelty and cleverness, not scale — whether the legal theory survives regulatory attention is an open question the company itself doesn't fully dodge.</span>
+      </div>
+      <div class="linkline"><a href="https://www.onionfutures.com/" target="_blank" rel="noopener">onionfutures.com</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://inflightsimulator.com/" target="_blank" rel="noopener">In-Flight Simulator</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A browser-based three.js project that simulates not flying a plane, but sitting in one — a procedurally generated long-haul flight where you watch the real-time map scroll past your window seat, complete with turbulence warnings to stow your tray table.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Every flight sim before this one was built for people who want to be the pilot; this is the first one built purely to recreate the oddly meditative boredom of window-seat cruising altitude, and it landed one of the week's better-received Show HN threads for exactly that reason.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — no workflow or business angle, just a nicely observed small build worth two minutes if you want ambient background noise for a task.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Not trying to be more than a mood piece, and doesn't need to be — 278 points and 150+ comments of people enjoying it for exactly what it is.</span>
+      </div>
+      <div class="linkline"><a href="https://inflightsimulator.com/" target="_blank" rel="noopener">inflightsimulator.com</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 20, 2026
+  </footer>
+
+</div>
+</body>
+</html>
