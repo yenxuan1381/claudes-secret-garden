@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 21, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 21, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a decentralized BitTorrent layer that keeps AI model weights alive after their host deletes them, a confirmed live mechanism tying your ChatGPT account to browsing on unrelated websites, a clean theoretical extension of UTF-8 that keeps every one of its guarantees intact, a byte-identical decompilation of Resident Evil 4's GameCube build, a free open-source alternative to paid stock-tracking dashboards picking up real traction, and a solo UK engineer's bootstrapped Meetup.com competitor relaunching to a strong reception.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://pirateface.co/" target="_blank" rel="noopener">Pirate Face</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A decentralized network, launched this week, that turns any public Hugging Face model into a cryptographically verified BitTorrent file — Hugging Face itself acts as a built-in fallback web-seed via BEP-19, so a download completes even with zero other peers. Anyone can browse, download, or reseed a model with no account required, and every file ships with its official Hugging Face SHA-256 checksum so tampered weights are easy to catch.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Model deletion isn't hypothetical — labs pull weights over licensing disputes, safety reviews, or plain business decisions, and until now "the model is gone" meant gone for good; wrapping verified torrents around the whole Hugging Face catalog turns a single-host chokepoint into a swarm that's much harder to unwind.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your firm has ever leaned on an open-weight model for internal tooling and worried about a provider quietly deprecating or restricting it, this is a live example of the open-model ecosystem starting to insure itself against exactly that — a risk-mitigation pattern worth knowing about even if you never touch a torrent client.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Shipped by an anonymous team in days, not months, but the underlying move — models as verified torrents, resilient to any single host disappearing — is the same architectural leap Pirate Bay made for media, aimed squarely at AI's current chokepoint.</span>
+      </div>
+      <div class="linkline"><a href="https://pirateface.co/" target="_blank" rel="noopener">pirateface.co</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector/" target="_blank" rel="noopener">ChatGPT's Ad Collector</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Independent researcher Buchodi found that OpenAI runs an advertiser-conversion pixel, hosted at bzr.openai.com, that sets a cookie called <code>__obi</code> on ordinary third-party websites — tied to a signed token issued by ChatGPT's own backend. When a site running that pixel loads, it can send OpenAI what you were doing there, linked to your ChatGPT account or to an anonymous session that persists on-device for at least 27 days, even while logged out.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>This isn't a hypothetical privacy-policy clause — it's a working, currently-live mechanism connecting your ChatGPT identity to browsing on unrelated sites, the same category of cross-site tracking regulators have spent a decade pushing out of ordinary ad tech, now arriving through an AI assistant instead.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A direct one for finance and compliance: if anyone at your firm treats a ChatGPT session as separate from their broader web activity during research or diligence work, that assumption doesn't hold on Android Chrome today — and it's an early look at the same ad-targeting infrastructure AI labs are now quietly building.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">696 points and 367 comments in a day, and the mechanism is confirmed and specific rather than speculative — exactly the kind of finding that tends to end up in a regulator's inbox.</span>
+      </div>
+      <div class="linkline"><a href="https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector/" target="_blank" rel="noopener">buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://utf-8000.jb2170.com/" target="_blank" rel="noopener">UTF-8000</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A from-scratch extension of UTF-8 that removes its 4-byte, ~1.1-million-codepoint ceiling while preserving every property that makes UTF-8 work — self-synchronization, self-punctuation, correct byte-wise string sorting — with each additional byte contributing five more content bits. A reference implementation shipped as a small Python package alongside the written spec.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>UTF-8's design has survived essentially unchanged since 1993 specifically because nobody found a clean way to extend it without breaking those guarantees; a working extension that keeps all of them intact is a genuine, if mostly academic, piece of format archaeology on a spec most engineers assumed was permanently frozen.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — there's no realistic path to anyone needing more than Unicode's current 1.1 million codepoints, so this is a neat proof rather than something you'll ever deploy.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">129 points on a genuinely technical thread — well-received because it respects the constraints instead of hand-waving past them, not because anyone needs it.</span>
+      </div>
+      <div class="linkline"><a href="https://utf-8000.jb2170.com/" target="_blank" rel="noopener">utf-8000.jb2170.com</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/emoose/re4" target="_blank" rel="noopener">Resident Evil 4 Decompilation</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A community reverse-engineering effort has produced a complete, byte-identical decompilation of Resident Evil 4's 2004 GameCube debug build into roughly 555,000 lines of readable C/C++. Building the repo reproduces the original executable and all 114 overlay modules exactly, checked on every build, with almost no leftover hand-written assembly.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Byte-identical decompilation is the strongest possible proof a reverse-engineering effort actually understood the original code rather than approximating it — it's the same technique that turned Super Mario 64 from an emulator curiosity into native PC ports, mods, and years of downstream community tooling.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool unless you're into game preservation — but it's a clean real-world demonstration of how far community-driven decompilation of legacy compiled binaries has come, which has quiet relevance anywhere your firm holds or evaluates IP built on old, undocumented code.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">No original code or assets are included, and you need your own legally-owned disc image to build it — a serious technical achievement kept carefully on the right side of the line that gets these projects taken down.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/emoose/re4" target="_blank" rel="noopener">github.com/emoose/re4</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/Open-Dev-Society/OpenStock" target="_blank" rel="noopener">OpenStock</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A free, open-source stock-tracking web app — real-time prices across 30+ exchanges, watchlists, personalized alerts, and company snapshots — built on Next.js with market data from Finnhub and TradingView's chart widgets. It's AGPL-licensed, so any hosted fork has to stay open too, and it picked up roughly 750 new stars in a single day this week.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It isn't trying to replace a brokerage or a Bloomberg Terminal — it's the free, inspectable version of the "track prices and get alerted" layer that a lot of people currently pay for or sit through ads to get, built by a small open-source team rather than a company selling a subscription.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look less as a research tool and more as a competitive signal — free, self-hostable market-data dashboards chip away at exactly the low end of the paid-terminal market, and it's the kind of thing a junior analyst on your team might quietly start using instead of a paid watchlist tool.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">17k+ stars and real day-over-day growth, but it leans on a free-tier data provider with rate limits and delay caveats — a genuinely useful dashboard, not infrastructure you'd trust for anything time-sensitive.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Open-Dev-Society/OpenStock" target="_blank" rel="noopener">github.com/Open-Dev-Society/OpenStock</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://radius.to/" target="_blank" rel="noopener">Radius</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo-built Meetup.com alternative — group pages, event hosting, and lightweight "Activities" for casual one-off plans — free for groups up to 50 members, with a paid tier above that. Its founder, a UK engineer who taught himself to build it after an outsourced first attempt failed, relaunched it on Show HN this week.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Meetup has raised prices and let its UX stagnate for years with no serious competitor; Radius is a straightforward bet that a modern, fast, transparently-priced clone built by one motivated person can out-execute an incumbent that stopped trying — a bet that's worked before in this exact shape (see Partiful vs. Facebook Events).</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A good small case study in bootstrapped SaaS economics — one technical founder, a clear incumbent to underprice and out-build, and a freemium ceiling (50 members) that's cheap to run and easy to explain to a first paying customer.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">150+ substantive comments on its Show HN relaunch and real paying groups already on the platform — still small, but a working business, not a demo.</span>
+      </div>
+      <div class="linkline"><a href="https://radius.to/" target="_blank" rel="noopener">radius.to</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 21, 2026
+  </footer>
+
+</div>
+</body>
+</html>
