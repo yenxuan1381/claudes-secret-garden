@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 22, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 22, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a programming language that makes an AI agent mathematically prove its edits didn't break your rules, Amazon cutting off Meta's runaway-hit shopping agent over credential-capture concerns, a rigorous study finding AI chatbots get financial questions wrong most of the time, a solo-built local memory tool that refuses to summarize your AI conversations, a joke chatbot built by asking a pure classifier model one character at a time, and a small open-source kit of loading animations built specifically for AI agent interfaces.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/HigherOrderCO/Bend" target="_blank" rel="noopener">Bend 2</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Brazilian researcher Victor Taelin's HigherOrderCo shipped Bend 2, a compiled language with Python-like syntax that runs the same code on CPU or GPU and ships a proof checker fast enough to use every build. Projects write their non-negotiable rules — "the sum of all balances in this contract must be zero" is the docs' own example — into a file called LAWS.bend, and the compiler mathematically refuses to build any change, AI-written or not, that would break one.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>AI agents are now writing and editing production code faster than most teams can carefully review every diff by hand; this turns "did the agent just violate an invariant" from a question for a tired reviewer into a compile-time proof, checked in milliseconds using the same proof-assistant technique labs use for open math problems, but reportedly tens of times faster than Lean at typechecking.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>The balance-conservation example in its own docs is basically a pitch to finance engineering — a language that can mathematically guarantee an AI-generated patch to money-handling logic can't silently break a conservation rule is a genuinely new tool for exactly the kind of code where a subtle AI mistake is expensive.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Launched September 17 and still gaining serious daily stars a week later — a real, working answer to "how do we trust AI-written code," not a research paper, though it's young with a small standard library and immature editor support.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/HigherOrderCO/Bend" target="_blank" rel="noopener">github.com/HigherOrderCO/Bend</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49789982" target="_blank" rel="noopener">Amazon Blocks Meta's Muse</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Amazon cut off Meta's AI shopping agent Muse from amazon.com this week, saying Muse doesn't identify itself as a bot when it browses and appears to capture and store shoppers' Amazon login credentials while acting on their behalf. Muse launched September 8 and became the #1 free app in the US App Store within a week, ahead of ChatGPT, by handling shopping, payments, and bookings end-to-end.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>This is the first real, public collision over who controls an agentic purchase — the retailer holding the catalog and checkout, or the assistant holding the user's intent and (per Amazon) their saved credentials — and it's happening despite Amazon and Meta running a multibillion-dollar cloud and chip deal together.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete precedent worth tracking if your firm has any exposure to e-commerce, payments rails, or agent-driven transactions — this exact fight (who controls checkout when an AI agent is the one clicking "buy") is going to repeat across every platform that sells anything, and Amazon just drew its line.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Not because of who wins this specific standoff, but because it's the first major public fight over agentic-commerce control between two platforms this size — more of these are coming, and this one sets an early precedent.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49789982" target="_blank" rel="noopener">news.ycombinator.com/item?id=49789982</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49783062" target="_blank" rel="noopener">AI Chatbots Get Financial Questions Wrong Most of the Time</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Fintech firm Saturn tested 18 AI models — including ChatGPT, Claude, Gemini, Copilot, and Grok — against 121 real financial questions covering mortgages, pensions, tax, and debt. Reported by the Financial Times, the study found models gave inaccurate answers 57% of the time on average, with the error rate climbing to 88% on the hardest, multi-step questions.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>This isn't a vague "AI hallucinates sometimes" caution — the report documents specific, repeatable failure categories: calculation errors, missing risk warnings, and references to tax rules that are outdated or don't exist, exactly the kind of mistake that's easy to miss if the answer sounds confident.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly relevant to how anyone in finance uses AI day to day — a specific, citable reason to keep a human check on any AI-generated number before it reaches a client or a model, and a set of concrete failure categories you can actually test your own workflow against instead of a generic hallucination warning.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Rated as a wake-up call rather than a tool — it's a rigorous, sourced study with a real methodology (121 questions, 18 models), not a vibes-based take, and it sparked a substantial front-page HN discussion.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49783062" target="_blank" rel="noopener">news.ycombinator.com/item?id=49783062</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/aru-labs/lossless-memory" target="_blank" rel="noopener">Lossless-Memory</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo-built local tool, posted to Show HN this week, that stores every line of your AI conversations verbatim — timestamped and indexed by full text and time range — instead of periodically asking a model to summarize old messages down to save space. Its creator built it after repeatedly watching a specific detail vanish once a conversation crossed a context or session limit.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Standard AI "memory" features quietly summarize your history to fit a context window, and summarization drops the exact detail you wanted back later; this treats the raw log as the source of truth, so a query like "what did we decide last Tuesday evening" returns your actual words instead of a paraphrase.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Useful mainly as a private, searchable archive if you do continuous research or analysis work across many AI sessions and want your own exact words back, not a paraphrase — though it's a single-developer project with real limits (currently Japanese-only time-phrase parsing) and no team behind it yet.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A clean, honestly-scoped idea that solves a real annoyance, but it's early — under 100 stars and one primary user so far — worth watching rather than adopting today.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/aru-labs/lossless-memory" target="_blank" rel="noopener">github.com/aru-labs/lossless-memory</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/kyle-pena-nlp/jevchat" target="_blank" rel="noopener">jevchat</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A weekend hack that turns Jev — the classification-only decision model that's dominated this newsletter's coverage the past two weeks — into a full chatbot, by asking it one question per character: "given everything written so far, which symbol comes next?" It samples from Jev's returned probabilities, appends the symbol, and repeats until a stop symbol is drawn.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Jev was built specifically to never generate text, only classify; this is a deliberately literal proof that you can bolt text generation back onto a pure classifier by treating "what comes next" as one giant multiple-choice question per character — slow, wildly impractical, and it genuinely works.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a fun, well-explained demonstration of how much flexibility a narrow classification model actually has, worth two minutes to read, not something with a workflow use.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Built explicitly for laughs and openly impractical by cost — it did well on Hacker News because the write-up and mechanism are clever, not because anyone should actually use it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/kyle-pena-nlp/jevchat" target="_blank" rel="noopener">github.com/kyle-pena-nlp/jevchat</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/Jakubantalik/thinking-orbs" target="_blank" rel="noopener">thinking-orbs</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A small open-source library of nine animated loading indicators built specifically for AI agent interfaces, each shaped to match what the agent is actually doing — working, searching, listening, composing, and so on — instead of a single generic spinner. It's plain 2D canvas, framework-agnostic, with automatic dark/light theming and reduced-motion support built in.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Nearly every AI product ships some version of "thinking..." right now, and most reuse a spinner that tells the user nothing about what's actually happening; this is a small, thoughtfully accessible drop-in for that one specific, extremely common interface gap.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — if your team ships any kind of AI-assistant interface, it's a two-minute install that's a step up from a generic spinner, nothing more than that.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Polished and well-designed for what it is, gaining real traction fast, but it's a UI decoration, not infrastructure.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Jakubantalik/thinking-orbs" target="_blank" rel="noopener">github.com/Jakubantalik/thinking-orbs</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 22, 2026
+  </footer>
+
+</div>
+</body>
+</html>
