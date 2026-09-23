@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 23, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 23, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a Chinese coding agent caught silently uploading entire codebases to the cloud (and open-sourcing itself in response), a decade-old Pegasus-detection toolkit surging back to relevance as a live spyware campaign hits activists, a scrappy proxy that turns 3,000+ paywalled business APIs into one metered endpoint for AI agents, a solo-built skill pack that translates agent jargon into plain English for non-engineers, a self-hosted multi-agent stock-monitoring dashboard out of China, and an AI tool that turns long raw footage into ready-to-post highlight clips.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49750694" target="_blank" rel="noopener">ZCode's Silent Upload</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A reverse-engineering report found that ZCode, the coding agent from Chinese AI lab Z.ai, was packaging entire local codebases — full git history included — into encrypted archives and uploading them to Alibaba Cloud by default, through a "Codebase Indexing" feature nobody had to opt into or was told about. Only Z.ai's servers held the decryption key, so users had no way to confirm or delete what had already been sent.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>This wasn't a vague privacy-policy complaint — the analysis traced the exact feature, the exact destination, and the exact encryption scheme, forcing a fast and unusually concrete response: Z.ai disabled the feature, commissioned outside security audits, and open-sourced the entire ZCode client, backend, and agent runtime under Apache 2.0.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A direct, sourced cautionary tale for anyone whose firm has let engineers loose with an unvetted AI coding assistant on proprietary or client-facing code — worth an afternoon checking what any coding agent you actually use phones home with by default, since "it just indexes your codebase" can mean exactly this.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Real, verified fallout — feature killed, external audit, full open-sourcing — that sets a concrete bar every other AI coding tool vendor will now get measured against, though it's still confined to one product.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49750694" target="_blank" rel="noopener">news.ycombinator.com/item?id=49750694</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/mvt-project/mvt" target="_blank" rel="noopener">MVT's Comeback</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>MVT (Mobile Verification Toolkit), Amnesty International's open-source phone-forensics tool from the original 2021 Pegasus Project, gained roughly 441 stars in a single day this week after Citizen Lab and Serbia's SHARE Foundation confirmed a fresh wave of Pegasus and Pegasus-like Android spyware infections targeting student activists and journalists.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>It's the same open method that first exposed Pegasus five years ago — reading shutdown logs, diagnostic data, and crash traces for spyware fingerprints — getting renewed attention for the plain reason that the underlying threat never actually went away, it just moved to a new country.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Less a workflow tool than a security-awareness prompt — if anyone at your firm handles sensitive deals, executive travel, or politically exposed contacts, MVT is the actual free tool people run to check a phone for this category of compromise, not just a headline to skim past.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A mature, well-audited tool getting real renewed relevance from an active, ongoing spyware campaign rather than manufactured hype — useful today, not speculative.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mvt-project/mvt" target="_blank" rel="noopener">github.com/mvt-project/mvt</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://treg.to/" target="_blank" rel="noopener">treg</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A small team's proxy service, one of this week's fastest-growing GitHub repos, that puts 3,000+ business APIs across 60+ providers — SEO data, company enrichment, ads, scraping, social trends — behind one base URL and one token for AI agents to call, billed by the fraction-of-a-cent instead of requiring a separate paid subscription to each one.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Lots of the data an agent needs for real research work sits behind $50–150/month subscriptions (Semrush, Crunchbase, Apollo, and similar) that make no sense to buy just so a script can call them a handful of times; treg carries those accounts itself and turns the whole category into pay-per-call.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Genuinely useful if you or an analyst on your team ever scripts research pulls — company enrichment, backlink or ad data, social trend checks — the exact kind of one-off data need that currently means either a monthly subscription you barely use or manual lookups.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A clean, well-scoped idea gaining real daily stars, but it's early infrastructure that routes through a third party holding provider credentials — worth watching how it handles trust and uptime as usage grows.</span>
+      </div>
+      <div class="linkline"><a href="https://treg.to/" target="_blank" rel="noopener">treg.to</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/kharmanskyi/open-steps" target="_blank" rel="noopener">Open Steps</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A small, solo-built skill pack for Claude Code and similar coding agents that translates an agent's technical output — commit hashes, stack traces, jargon-heavy status reports — into plain language a non-engineer can actually act on, saying "people can sign in again" instead of "session TTL misconfig in auth middleware caused 401 cascades."</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>As more non-engineers direct AI coding agents themselves, the real bottleneck often isn't the code, it's knowing whether the agent actually finished the task — this closes exactly that gap by forcing an honest, plain-English "done or not" verdict instead of a wall of technical detail nobody outside engineering can parse.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Relevant anywhere a non-technical manager or a compliance function needs to sanity-check what an AI coding agent actually did to a system, without pulling in an engineer to translate — a small, low-cost way to keep oversight of AI-driven dev work legible to people outside the team doing it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A narrow, honestly-scoped idea solving a real and growing gap as non-engineers direct more AI coding work — still a single-developer project with under 1,000 stars, worth watching rather than betting on.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/kharmanskyi/open-steps" target="_blank" rel="noopener">github.com/kharmanskyi/open-steps</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/TNT-Likely/PanWatch" target="_blank" rel="noopener">PanWatch</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A self-hosted, free stock-monitoring dashboard out of China covering A-shares, Hong Kong, and US equities, that runs a nine-agent "debate" — each agent arguing a different angle on technicals, sentiment, and risk — to generate a trading recommendation in three to five minutes, then pushes it to Telegram, WeChat, or Discord-style channels.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Most retail stock-monitoring tools are either a single black-box "buy/sell" score or a plain price alert; running several agents through an actual adversarial debate before it commits to a call, and letting you inspect their reasoning, is a more legible middle ground than either.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look as a competitive and product-design signal more than a tool to trust with real money — free, self-hostable "AI analyst team" dashboards like this are exactly the kind of thing that chips at the low end of paid research and alerting products, and the multi-agent-debate pattern is a genuinely interesting UX to study.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real day-over-day star growth and a thoughtful design, but it's a solo/small-team project stacking several AI judgment calls into one trading signal — treat the output as a research aid, not an oracle.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/TNT-Likely/PanWatch" target="_blank" rel="noopener">github.com/TNT-Likely/PanWatch</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener">AutoClip</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source tool, up nearly 600 stars in a day this week, that ingests a long video — a podcast, interview, lecture, or livestream, from a local file, YouTube, or Bilibili — reads its subtitles to find the actually engaging moments, and automatically cuts, titles, and compiles shareable highlight clips.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why it lands</span>
+        <p>Turning an hour of raw footage into a handful of postable clips is exactly the kind of tedious, purely mechanical editing work that eats a content creator's week; doing the highlight-finding off the transcript instead of the raw video is a cheap, sensible shortcut that clearly works well enough to go viral on its own merits.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool unless your firm actually produces long-form video content (webinars, earnings calls, internal talks) — in that specific case it's a real time-saver for turning that footage into shareable social clips, but it's not a broader workflow tool.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A well-executed, narrow content tool with real day-over-day traction — useful for exactly one job, not infrastructure beyond it.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener">github.com/zhouxiaoka/autoclip</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 23, 2026
+  </footer>
+
+</div>
+</body>
+</html>
