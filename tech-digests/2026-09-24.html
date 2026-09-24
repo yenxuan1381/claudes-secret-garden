@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 24, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 24, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — an indie team wiring a real Toyota Corolla to an AI agent and only one frontier model finishing the course, Claude Code caught silently skipping project instructions whenever telemetry is off, a 25-line parody that reproduces a heavily-hyped "typed decision" architecture in an afternoon, a solo-built 3MB browser that ditches Chromium for the Mac's own WebKit, a private-beta crash debugger that hands AI agents pre-interpreted evidence instead of raw hex, and an indie Hacker News app that lets you filter out AI stories entirely.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49817404" target="_blank" rel="noopener">DrivingBench</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Three independent builders fitted a real Toyota Corolla with comma.ai openpilot hardware and exposed steering, throttle, and brake control to any AI agent through a tiny MCP server — three tools, observe, set_motion, stop_now. Four frontier models each got one attempt at a roughly 130-meter cone course in a parking lot; only GPT-6 Astra finished it, on its second try, in 5 minutes 22 seconds, while the rest didn't get past the halfway mark.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's the first time a language model has driven a real car through a real obstacle course instead of a simulator, and the harness behind it is small and open enough that anyone with comma hardware could rebuild the whole setup themselves.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool for now — one run per model in a parking lot isn't a real driving benchmark yet — but it's a concrete, reproducible measurement of how far "an agent can operate physical equipment" actually is from the marketing claims, which is exactly the gap that matters before anyone insures or underwrites agent-operated hardware.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real hardware, a genuinely reproducible open-source harness, and a first-of-its-kind result, but one-shot testing in a controlled lot means it's a proof of concept, not yet a benchmark.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49817404" target="_blank" rel="noopener">news.ycombinator.com/item?id=49817404</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49814947" target="_blank" rel="noopener">Claude Code's Silent AGENTS.md Gate</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Developer Piotr Szypowicz found that Claude Code 2.1.277 only loads a project's AGENTS.md instructions if it can first fetch a remote Anthropic feature flag — with telemetry disabled, that flag can't be reached, so the file is skipped with no warning or log line. Anthropic engineers called it an unintended rollout artifact and shipped a fix in 2.1.281.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>A local instructions file quietly failing to load because of a network call nobody knew existed is exactly the kind of trust-breaking bug that's hard to catch — any team running Claude Code through Bedrock, Vertex, or with telemetry off could have had project rules silently ignored with no error to notice.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly relevant if your firm runs Claude Code in a locked-down or enterprise-cloud setup, since this very digest runs on it — worth checking you're on 2.1.281 or later and that your AGENTS.md or CLAUDE.md rules are actually loading, because a compliance rule silently not applying is precisely the failure mode that bites later.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, sourced bug with an on-record acknowledgment from Anthropic and a shipped fix, not speculation — kept below "could be big" only because it's already patched.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49814947" target="_blank" rel="noopener">news.ycombinator.com/item?id=49814947</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49812769" target="_blank" rel="noopener">Jev in 25 Lines of Python</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>NobodyWho published a roughly 25-line script that loads a small local Qwen3-0.6B model and scores a handful of labeled options — say, legitimate, spam, phishing — by reading the model's own next-token probabilities, reproducing in an afternoon the core trick behind TypeSafe's heavily-hyped "Jev" typed-decision architecture.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a pointed emperor-has-no-clothes moment that reached 546 points on Hacker News — showing that a heavily marketed, presumably novel decision architecture is a well-known logit-extraction technique anyone can replicate against an open model, which reframes how much of the buzz around it was substance versus packaging.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A useful skepticism check for anyone in finance evaluating a vendor's pitch for a proprietary "AI decision engine" — if the core technique fits in 25 lines against an open model, that's a real data point for what's actually worth paying a premium for.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Not a new tool so much as a well-argued critique that reframes a story already dominating the discourse — useful as a lens, not something you'd deploy.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49812769" target="_blank" rel="noopener">news.ycombinator.com/item?id=49812769</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/driceroland/Search" target="_blank" rel="noopener">Search</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo-built macOS browser that wraps the system's own WebKit engine — the same one Safari runs on — instead of bundling Chromium, so the whole app is about 3MB and opens instantly. There's no toolbar, no start page, no sign-in, and nothing phones home until you hit Return; it supports Chrome extensions through WebKit's native extension engine.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Every mainstream browser has grown into a multi-hundred-megabyte platform with accounts, sync, and telemetry baked in by default; this is a pointed demonstration that a genuinely fast, private, disposable browser is still buildable in days by one person using what's already sitting on the machine.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a nice utility if you want a zero-friction, no-tracking browser for quick lookups, but not something that changes a workflow.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A clean, well-executed idea with real traction — #10 on GitHub's daily trending list and climbing past 800 stars — but a personal-use utility, not infrastructure.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/driceroland/Search" target="_blank" rel="noopener">github.com/driceroland/Search</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49821086" target="_blank" rel="noopener">ForensicDbg</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A new post-mortem debugger for native Windows x86/x64 crash dumps, built by one developer after years of frustration with WinDbg, that automatically reconstructs modules, validates stack traces, and infers types — then exposes all of that structured analysis to any MCP-speaking AI agent instead of making it parse raw hex.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Handing an AI coding agent a crash dump today usually means it burns its context re-deriving what a debugger already knows; giving it pre-interpreted, structured crash evidence over MCP means the agent spends its effort on actual root-cause analysis instead of reconstruction.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Relevant if your team maintains any native Windows software — trading infrastructure, legacy desktop tools — as a real productivity unlock for agent-assisted crash triage, though it's currently invite-only private beta, so you can't try it yourself yet.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A narrow but genuinely useful idea addressing a real agent-tooling gap, held back only by being pre-release.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49821086" target="_blank" rel="noopener">news.ycombinator.com/item?id=49821086</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://apps.apple.com/us/app/hack-for-hacker-news-yc-reader/id1464477788" target="_blank" rel="noopener">HACK's AI Filter</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>The indie Hacker News reader app HACK, for Mac, iPhone, and iPad, shipped an opt-in setting that regex-filters AI-related submissions out of your feed entirely. In one sampled run across the front pages, it blocked 32 of 90 titles.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a funny, self-aware data point on how saturated tech discourse itself has become with AI stories — over a third of what you'd normally read on HN right now is AI-related, made visible by a small toggle rather than a think-piece about it.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just fun — but if you or anyone on your team reads HN or tech Twitter for signal, it's a genuinely useful filter for cutting through the noise to see what else is happening in tech day to day.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A small, well-executed feature in an existing indie app rather than a new project, but a nice piece of self-aware tooling.</span>
+      </div>
+      <div class="linkline"><a href="https://apps.apple.com/us/app/hack-for-hacker-news-yc-reader/id1464477788" target="_blank" rel="noopener">apps.apple.com/us/app/hack-for-hacker-news-yc-reader</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 24, 2026
+  </footer>
+
+</div>
+</body>
+</html>
