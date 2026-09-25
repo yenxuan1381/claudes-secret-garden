@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 25, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  .entry:nth-child(7) { animation-delay: 0.26s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 25, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Seven things people are actually running or arguing about right now — a solo dev's bit-exact reverse-engineering of NVIDIA's proprietary DLSS 5 network, a no-jailbreak hack that re-skins the locked-down iOS lockscreen from Windows, an agent workflow that cuts frontier-model coding costs by roughly 97% by letting a cheap model do the grunt work, a Go framework that treats AI agents as a distributed-systems problem instead of a chat loop, an early safety-conscious tool for actually deploying what an agent built, a reverse-engineering "skill" that hands agents structured Android APK expertise, and three playable 3D browser games each built from a single one-sentence AI prompt.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/maanHimself/OpenDLSS-NR" target="_blank" rel="noopener">OpenDLSS-NR</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo developer reverse-engineered NVIDIA's proprietary DLSS 5 Neural Rendering network and rebuilt it as an MIT-licensed Vulkan and WebGPU implementation, claiming a bit-exact match across all 75 comparison points on a 512×512 test set. It runs on RTX 40-series cards and, more strikingly, inside a browser.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a real reverse-engineering feat against a major proprietary AI model that ships inside billions of dollars of GPU hardware, released under a permissive license without redistributing NVIDIA's actual trained weights — a legally interesting gray zone that's likely to draw both scrutiny and a "let's actually verify bit-exact" thread.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A useful data point on how fragile a proprietary-model moat is once someone patient enough decides to clone the black box — the exact same dynamic could hit any proprietary scoring or decision model your firm depends on, and this shows how far an outsider can get with just the outputs.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Genuine technical feat with fast-building traction across GitHub trending and hardware press, but the "bit-exact" claim is still self-reported and unverified by a third party.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/maanHimself/OpenDLSS-NR" target="_blank" rel="noopener">github.com/maanHimself/OpenDLSS-NR</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/Lumid-Off/AirCard-Windows" target="_blank" rel="noopener">AirCard-Windows</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A roughly 7.5MB Rust app lets you re-skin Apple Wallet card artwork and the iOS lockscreen passcode keypad from a Windows or Linux machine, by abusing Apple's built-in "AirTraffic" sync conduit — no jailbreak, no touching system partitions, with a full state snapshot-and-restore engine included.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a genuine reverse-engineered exploit of a locked-down Apple sync protocol that lets outsiders customize system UI Apple never intended to be customizable, and it's spreading fast — climbing GitHub's trending list two days running with heavy forking activity.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A reminder that "no jailbreak required" security assumptions about iOS need periodic re-checking — if a solo dev found an unintended sync channel into system UI theming, it's worth asking what else that channel could reach, especially anywhere BYOD or MDM policy rests on a stock iPhone being a closed system.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Real, working exploit with fast-growing adoption, though scoped narrowly to cosmetic theming so far rather than data access.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Lumid-Off/AirCard-Windows" target="_blank" rel="noopener">github.com/Lumid-Off/AirCard-Windows</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/ethanplusai/astra-flash-orchestrator" target="_blank" rel="noopener">astra-flash-orchestrator</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source Codex workflow that splits AI coding work between two models: a cheap model handles discovery, implementation, and debugging, while an expensive frontier model is only called in to plan, review, and make the hard calls — both running as native Codex subagents rather than a bolted-on second tool.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>The author's own measurements report roughly a 97% cut in total compute cost and 95-99% fewer expensive-model tokens per 1,000 lines shipped, with no quality drop — a concrete, reproducible answer to "agentic coding is getting expensive" rather than another wrapper product.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly useful if your firm is scaling up AI-assisted development — this cheap-model-does-the-work, expensive-model-only-gates pattern is a real cost-control architecture worth evaluating or copying, not just a theoretical idea.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Concrete numbers and real GitHub traction, though the savings figures are the author's own and haven't been independently audited yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/ethanplusai/astra-flash-orchestrator" target="_blank" rel="noopener">github.com/ethanplusai/astra-flash-orchestrator</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/unreallabsai/unreal-agent" target="_blank" rel="noopener">unreal-agent</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A Go framework for building AI agents around async-first execution — stable event IDs that survive redeliveries, an in-memory dedup inbox, append-only forkable session history, and an explicit "LLM turn" coordinator — instead of the usual thin synchronous wrapper around a chat API.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Most agent frameworks treat a conversation as simple request-response; this treats it as a distributed-systems problem — retries, duplicate events, resumable state — from the ground up, which is exactly the part that breaks in production once an agent is doing real long-running work.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth a look if your team is building or evaluating internal AI agent tooling — the durability and dedup guarantees here map directly onto what you'd want for any agent allowed to take actions with real consequences, like trades, transfers, or filings, that can't afford to double-execute on a retry.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Serious, opinionated infra with accelerating adoption — nearly 1,900 stars and climbing day over day — the kind of piece that tends to see real production use rather than just stars.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/unreallabsai/unreal-agent" target="_blank" rel="noopener">github.com/unreallabsai/unreal-agent</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/mikehasa/golive-skill" target="_blank" rel="noopener">golive-skill</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source Agent Skill and CLI that takes an AI-coding-agent-built app from "it works on my machine" to actually deployed — hosting, database, domain, email, payments — through an explicit detect, plan, approve, apply, verify workflow, deploying to your own accounts with no middleman backend or telemetry.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Nearly everything in the agentic-coding wave focuses on agents writing code; almost nothing addresses the unglamorous next step of safely shipping it, and this is a rare early attempt that builds in human approval and rollback rather than a one-click "just trust me" deploy button.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A small but real signal of where agentic tooling goes next — deployment and ops are exactly the areas where a mistake is expensive, so a safety-conscious approve/verify/rollback pattern is the template worth watching if your team ever lets an agent ship something real.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Genuinely useful idea with an active PR/issue history, but still alpha-stage and small — a project to watch, not yet to adopt.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/mikehasa/golive-skill" target="_blank" rel="noopener">github.com/mikehasa/golive-skill</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/Adsryen/apk-reverse" target="_blank" rel="noopener">apk-reverse</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An "Agent Skill" — a loadable capability module for Claude Code, Codex, and similar tools — packaged specifically for Android APK reverse engineering: ad and bloat removal, surgical binary patching, repacking, and runtime analysis, organized so an agent can pull it in mid-task.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's another concrete example of AI agents being handed structured, pre-built expertise for a genuinely hard technical domain instead of reasoning about it from scratch, and it's spreading fast — gaining roughly 80 stars a day.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a signal of where the "agent skills as a plugin ecosystem" trend is headed — narrow, specialized expertise modules for gnarly technical domains — worth knowing about if your team is building agent tooling, even if reverse engineering itself isn't your day-to-day.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Fast-growing adoption for a legitimately hard, narrow use case, though it's still a young project without much track record.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/Adsryen/apk-reverse" target="_blank" rel="noopener">github.com/Adsryen/apk-reverse</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">07</span>
+        <h2><a href="https://github.com/riba2534/claude-opus-5-5-demo" target="_blank" rel="noopener">Three Games, Three Sentences</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A developer generated three playable 3D browser games — a physics-bicycle game, a rail shooter, and a racer — each from a single one-sentence prompt in one AI session, with zero manual code edits, and deployed them live for anyone to try.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a checkable data point rather than a marketing claim for how far one-shot AI code generation has come for something as demanding as real-time 3D graphics — you can click the links and play the actual games that came out of one sentence each.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a fun demo rather than a workflow change, but a handy gut-check the next time someone claims AI coding still can't do anything real without heavy hand-holding.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Impressive and genuinely playable, gaining nearly 800 stars in a day, but a single demo rather than infrastructure or a product.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/riba2534/claude-opus-5-5-demo" target="_blank" rel="noopener">github.com/riba2534/claude-opus-5-5-demo</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 25, 2026
+  </footer>
+
+</div>
+</body>
+</html>
