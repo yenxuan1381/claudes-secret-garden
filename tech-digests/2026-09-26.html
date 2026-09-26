@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 26, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 26, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a solo-built open alternative to a hyped proprietary "decision model" API, a game studio giving away free 3D-printable versions of its own game, the Dutch government building a whole NixOS-based replacement for Windows after losing Microsoft access to US sanctions, an open-source platform for running AI agents like a company with real budgets and approvals, a startup's structured memory system meant to let agents actually learn over time, and a solo developer's agent that writes and tunes CUDA GPU kernels on its own.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/ollaya-dev/ollaya" target="_blank" rel="noopener">Ollaya</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Ollaya is a small open-source Rust CLI that runs local AI "decision models" — for things like triaging support tickets or flagging spam and phishing — as an Ollama-style daemon on your own machine. It exposes an API that's wire-compatible with TypeSafe's proprietary "Jev" decision-model service, and it only ships lightweight ~3MB ONNX graphs that pull verified open weights rather than repackaging anyone's model.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It turns a critique that's been spreading this week — that a heavily-hyped proprietary decision architecture is mostly a well-known logit-extraction trick over a small model — into a runnable, drop-in open alternative: point the official SDK's base URL at your own machine and existing client code works unchanged.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your firm or a vendor you use is evaluating a paid "AI decision engine" for classification-style work — fraud flags, ticket routing, compliance triage — this is a concrete free alternative to benchmark against before signing a contract, and a good prompt to ask vendors what's actually novel versus commodity technique.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, working, API-compatible alternative to a paid product with fast community traction, though still early and not independently audited for accuracy against the original.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/ollaya-dev/ollaya" target="_blank" rel="noopener">github.com/ollaya-dev/ollaya</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://factorio.com/blog/post/fff-447" target="_blank" rel="noopener">Factorio That You Can Touch</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Wube Software, the small studio behind the factory-building game Factorio, released 247 free STL files letting anyone 3D-print physical versions of the game's belts, machines, and inserters — redesigned from scratch by one of their artists to print cleanly on an ordinary home FDM printer. It's a thank-you gift to the community, not a paid collectible line.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a rare case of a studio choosing "here are the source files, make it your own" over selling licensed merchandise, and the craft involved — turning objects that only ever existed as 2D game sprites into printable real-world parts with hidden interior mechanisms — is its own small feat of design.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool — a nice example of a small, profitable studio spending real design effort on community goodwill instead of squeezing more revenue out of a franchise, worth a look if you think about how consumer-facing companies build loyalty without monetizing it.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Genuinely well-made and popular within its niche (300+ points and climbing on Hacker News), but a hobbyist gift, not a product or platform.</span>
+      </div>
+      <div class="linkline"><a href="https://factorio.com/blog/post/fff-447" target="_blank" rel="noopener">factorio.com/blog/post/fff-447</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49841563" target="_blank" rel="noopener">DAWO: The Netherlands' NixOS Alternative to Windows</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>The Dutch government is building DAWO (Digitaal Autonome Werkomgeving Overheid), a full replacement for its Windows-based IT stack — desktop OS, office suite, collaboration tools, cloud, and AI — built on NixOS, the reproducible-builds Linux distro that itself started as a Dutch university project. Eight municipalities are already piloting it, with a stable release targeted for 2027.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>The project exists because when the US sanctioned the International Criminal Court in 2025, the Hague-based court lost access to its Microsoft account overnight — the Dutch government's takeaway was that public administration shouldn't be one geopolitical decision away from losing its own computers, and NixOS's reproducibility is exactly the property you'd want for an auditable, government-wide build.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A concrete data point on sovereign-tech risk that's more than theoretical — relevant if you cover companies exposed to US-cloud dependency (European public-sector IT vendors, sovereign-cloud plays, or Microsoft/Google's government revenue), since this is a customer walking for a geopolitical reason, not a cost one, and other EU governments are watching it closely.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">Backed by real government budget and multi-municipality pilots rather than a press release, with a plausible multi-year path to real Microsoft-seat displacement across EU public sector — though full rollout is still years out and unproven at scale.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49841563" target="_blank" rel="noopener">news.ycombinator.com/item?id=49841563</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">Paperclip</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Paperclip is an open-source, self-hosted platform for running a team of AI coding and ops agents — Claude Code, Codex, Cursor, and similar — like a small company, with org charts, budgets, approval workflows, and audit logs instead of a single chat window. It's built by a small startup, Paperclip Labs, and needs no account or cloud dependency to run.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Most "multi-agent" tooling is a demo of agents talking to each other; this targets the boring-but-necessary layer — who approved this spend, which agent is accountable for this task, what's this week's cost ceiling — that any team actually letting agents work unsupervised eventually needs.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Directly relevant if your firm is letting AI agents do real recurring work — research pulls, report generation, monitoring — the budget-enforcement and approval-gate features here are the actual governance controls you'd want in place before trusting agents with anything that touches money or client data.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Fast-growing and MIT-licensed, solving a governance gap that's becoming urgent, but young enough that the org/audit model hasn't been stress-tested inside a real company yet.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">github.com/paperclipai/paperclip</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/vectorize-io/hindsight" target="_blank" rel="noopener">Hindsight</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Hindsight is an open-source memory system for AI agents from startup Vectorize, built to let an agent actually learn from past interactions instead of just replaying raw conversation logs. It splits memory into separate "world facts," "experiences," "opinions," and "mental model" stores rather than one flat vector index, and reports state-of-the-art results on the LongMemEval long-term-memory benchmark.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Nearly every AI agent today "forgets" everything between sessions except what fits in a context window or a flat vector database; a structured memory model that distinguishes a fact from an experience from a belief is a genuine architectural step toward agents that improve with use instead of resetting every time.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Worth watching if your firm builds or buys an agent meant to work with the same accounts, clients, or portfolios over months rather than single sessions — durable, structured memory is the difference between an assistant that re-learns your preferences every week and one that gets more useful over time.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A funded startup with real benchmark results and academic collaborators addressing a widely-felt gap, but "state-of-the-art" is self-reported and agent-memory benchmarks are still a young field.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/vectorize-io/hindsight" target="_blank" rel="noopener">github.com/vectorize-io/hindsight</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/bertaye/agentic-cuda-optimizer" target="_blank" rel="noopener">Agentic CUDA Optimizer</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A solo developer's open-source tool uses an LLM-driven agent loop (via LangGraph) to write, test, and iteratively optimize CUDA GPU kernels — the low-level code that determines how fast machine-learning workloads actually run — instead of an engineer hand-tuning them over days or weeks.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Writing fast CUDA kernels is a genuinely scarce, highly-paid skill; automating the generate-benchmark-refine loop that a human kernel engineer does by hand is exactly the kind of narrow, verifiable task — correctness checks and benchmarks as ground truth — where an agent loop can plausibly beat manual iteration speed, even if not final quality yet.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a signal rather than something to use today — it's a 30-star solo project — but it's a clean example of where "AI agent replaces expensive specialist labor" is furthest along: narrow technical work with a fast, automatic pass/fail signal, which is the pattern worth watching for other expensive-but-checkable jobs.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">A clever, well-scoped idea from one developer with early promising results, but tiny and explicitly experimental — a project to watch, not to rely on.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/bertaye/agentic-cuda-optimizer" target="_blank" rel="noopener">github.com/bertaye/agentic-cuda-optimizer</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 26, 2026
+  </footer>
+
+</div>
+</body>
+</html>
