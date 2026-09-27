@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 27, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker">
+      <span>Field Dispatch</span>
+      <span>Sept 27, 2026</span>
+    </div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a Codex account that spawned 826 unsupervised sub-agents and burned roughly $78,000 overnight, a solo developer walking a decade-old messaging app away from the Google Play tax once grant funding made it possible, a 1.0 open-source "office harness" meant to let AI agents build real spreadsheets and decks instead of pasted text, a free instant-boot local clone of AWS/Azure/GCP for testing, a browser tool that WASM-checks whether your next Postgres migration will take your app down, and a one-binary tool that lets a coding agent draw and iterate on its own Excalidraw diagrams.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://news.ycombinator.com/item?id=49861047" target="_blank" rel="noopener">The $78,000 Codex Runaway</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A developer's routine OpenAI Codex request from VS Code spun up 826 parallel child agent tasks that ran unsupervised overnight, burning through roughly $78,000 in API charges before anyone noticed — and per the ensuing Hacker News and GitHub issue threads, the platform's own records of what the swarm actually did were largely gone, leaving the user unable to reconstruct what happened.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's the most concrete "agent goes feral and racks up a bill you never saw coming" story yet — not a benchmark or a hypothetical, but one production account with no spend guardrail catching a fork-bomb of sub-agents until the invoice arrived, and it's reopened the fight over whether liability for an unauthorized agent spend sits with the platform or the user.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your firm is piloting any agentic coding tool with real API billing behind it, this is the exact failure mode worth pressure-testing before wider rollout: hard per-task spend caps and mandatory human sign-off before an agent can spawn child agents, not just a soft usage alert you might not see until the statement closes.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">A real, sourced dollar-figure incident forcing a genuine liability debate, though it's one account's failure so far rather than proof of a systemic platform flaw.</span>
+      </div>
+      <div class="linkline"><a href="https://news.ycombinator.com/item?id=49861047" target="_blank" rel="noopener">news.ycombinator.com/item?id=49861047</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://gultsch.de/posts/breaking-up-with-google-play/" target="_blank" rel="noopener">Breaking Up with Google Play</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Daniel Gultsch, solo developer of the decade-old federated XMPP messaging app Conversations, made it permanently free on Google Play after securing multi-year grant funding (NLnet and the European Commission, through 2029), and moved primary distribution to F-Droid with reproducible, self-signed builds.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>It's a rare, well-documented case of an indie developer walking away from app-store revenue — and its 15% cut, opaque review delays, and unexplained takedowns — the moment an alternative funding model made it possible, which is a real data point on what sustainable open-source software can look like outside the app-store toll booth.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly a case study rather than a direct opportunity, but genuinely useful if you think about software business models: it's evidence that public grant funding can substitute for app-store monetization on a mature niche product, which matters for how you'd value or model similarly grant-backed open infrastructure elsewhere.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">A real, sustained decision from a developer with a decade of track record and secured funding through 2029, not a stunt — but a single niche app, not yet a broader trend.</span>
+      </div>
+      <div class="linkline"><a href="https://gultsch.de/posts/breaking-up-with-google-play/" target="_blank" rel="noopener">gultsch.de/posts/breaking-up-with-google-play</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/dream-num/univer" target="_blank" rel="noopener">Univer 1.0</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>Chinese startup DreamNum shipped 1.0 of Univer, an open-source (Apache-2.0) "office harness" bundling spreadsheets, docs, slides, canvases, relational tables, and PDFs into one embeddable runtime with a shared plugin system — plus a new Server SDK and AI SDK so an agent can read, generate, and edit real office documents instead of just plain text.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>AI agents today mostly manipulate text; genuinely useful office work — a real formula-driven spreadsheet model, a formatted deck, a live dashboard — needs an actual office engine underneath it, and this is one of the first mature, permissively-licensed ones built specifically so an agent, not just a human, can drive it.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Squarely relevant to finance work — an agent that builds and edits a real spreadsheet model through an SDK, formulas and all, is a meaningfully different capability than a chatbot pasting numbers into a table, and worth watching if you'd want in-house tooling that produces actual Excel-like deliverables rather than text to copy in by hand.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp big">Could Be Big</span>
+        <span class="stamp-note">A 1.0 release, not a demo, from a team that already ships a real spreadsheet product, addressing a gap every "agent does office work" pitch currently glosses over.</span>
+      </div>
+      <div class="linkline"><a href="https://github.com/dream-num/univer" target="_blank" rel="noopener">github.com/dream-num/univer</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://floci.io/" target="_blank" rel="noopener">Floci</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>An open-source, MIT-licensed suite (built with Quarkus Native) that emulates roughly 45 AWS services plus Azure and GCP equivalents locally — S3, DynamoDB, Lambda, RDS, and more, running on real Docker containers and real Postgres/Redis underneath — starting in about 24 milliseconds with no account, auth token, or paid tier.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>LocalStack's free tier has narrowed over time and paid unlocks have crept into what used to be free local cloud testing; Floci is a direct, fully-free response that's also fast enough — near-instant startup — to fit inside an AI coding agent's tight test-and-iterate loop, not just a human's.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>If your team runs any cloud-dependent test suites or CI pipelines, this is a genuinely swappable cost- and friction-reducer — no new procurement, no account, just point existing AWS SDK calls at it locally instead of a paid emulator.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Solves a real, recently-worsened pain point with a credible technical approach, but young against an incumbent with years of edge-case coverage.</span>
+      </div>
+      <div class="linkline"><a href="https://floci.io/" target="_blank" rel="noopener">floci.io</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://safenotsafe.dev/" target="_blank" rel="noopener">Is My Migration Safe?</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A single-purpose web tool parses a pasted Postgres migration — using libpg_query compiled to WebAssembly, entirely client-side — and flags statements that would take dangerous locks or trigger full-table rewrites on a large production table, the same statement that's a no-op on a 500-row staging table.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Untested schema migrations are one of the most common ways teams take down production databases, and this turns "is this actually safe at real scale" into a ten-second browser check that never sends a private schema to a server.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>A small but immediately usable safety net if your team ships its own database migrations — including ones an AI coding agent wrote, which the author specifically calls out as newly risky, since agents produce syntactically correct SQL that looks safe but isn't.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp promising">Promising</span>
+        <span class="stamp-note">Narrow and unglamorous, but a real, working tool for a well-understood, expensive failure mode, with a CLI path for wiring straight into CI.</span>
+      </div>
+      <div class="linkline"><a href="https://safenotsafe.dev/" target="_blank" rel="noopener">safenotsafe.dev</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://tangled.org/yanndegat.tngl.sh/drawgent" target="_blank" rel="noopener">Drawgent</a></h2>
+      </div>
+      <div class="field">
+        <span class="field-label">What it is</span>
+        <p>A single Rust binary from one developer spins up a live Excalidraw canvas that your existing Claude Code, Codex, or opencode agent can see and edit directly — ask for a diagram in chat, or annotate the canvas with an "AGENT: ..." note, and the agent screenshots the scene, redraws it, and iterates until it's clean.</p>
+      </div>
+      <div class="field">
+        <span class="field-label">Why people care</span>
+        <p>Most AI-generated diagrams today are one-shot and never touched again; this closes the loop so an agent can inspect its own diagram, notice overlapping labels or bad arrow routing, and fix it live, then commit the result as a real .excalidraw file that stays in the repo alongside the code it describes.</p>
+      </div>
+      <div class="field finance">
+        <span class="field-label">For you</span>
+        <p>Mostly just cool for now — a nice trick for keeping architecture diagrams in sync with code, but a solo weekend-scale project rather than something to build a workflow around yet.</p>
+      </div>
+      <div class="stamp-row">
+        <span class="stamp toy">Toy</span>
+        <span class="stamp-note">Clever and well-executed, but a single-developer tool with no track record yet.</span>
+      </div>
+      <div class="linkline"><a href="https://tangled.org/yanndegat.tngl.sh/drawgent" target="_blank" rel="noopener">tangled.org/yanndegat.tngl.sh/drawgent</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from Hacker News, GitHub daily trending, and surrounding discussion · Sept 27, 2026
+  </footer>
+
+</div>
+</body>
+</html>
