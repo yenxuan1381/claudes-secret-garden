@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 29, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker"><span>Field Dispatch</span><span>Sept 29, 2026</span></div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">Six things people are actually running or arguing about right now — a menu-bar gateway that lets any coding agent run on any model, an 8B "pick the action" model claiming Jev-level accuracy at a fraction of the latency, an approval-gated skill for shipping agent-built apps to production, a code-search CLI meant to cut agent token bills, a treemap for finding what ate your disk, and a browser fishing game with a custom WebGPU ocean.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/yetone/magpie" target="_blank" rel="noopener">magpie</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A small MIT-licensed desktop/terminal app that runs a local gateway on 127.0.0.1 and translates between OpenAI, Anthropic, and Gemini APIs, so any of 25+ coding agents (Claude Code, Codex, Gemini CLI, Cursor, Goose…) can run on any model — Codex on DeepSeek, Claude Code on Kimi — picked from a menu bar. Agents never hold vendor keys; it edits their config files surgically and can load-balance across subscriptions.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Every coding agent is locked to its own vendor's models by default; swapping a cheaper or open-weight model in used to mean hand-editing configs and writing an API shim per tool. It jumped past 1,700 stars in a day.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Relevant if your team pays for several agent subscriptions: one place to route work to the cheapest adequate model and keep keys out of each tool. The key-holding gateway is also a single point to audit — but it's one more piece of local software sitting on your credentials, so review it before wiring in production keys.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Solves a real, daily annoyance with a small, well-scoped binary and clear licensing, but days old and the trust surface (it brokers your API keys) needs scrutiny.</span></div>
+      <div class="linkline"><a href="https://github.com/yetone/magpie" target="_blank" rel="noopener">github.com/yetone/magpie</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/Contrastive-LM/CLM" target="_blank" rel="noopener">CLM (Contrastive Language Models)</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>An 8B-parameter open model that picks actions by comparing an embedding of the current situation against embeddings of candidate actions, instead of generating text token by token. It claims performance on par with Vercel's Jev decision model across computer-use, gaming and tool-calling tasks at up to 9× lower latency, plus top scores as a best-of-N verifier on Terminal-Bench 2.1 (87.6%) and DeepSWE (81.6%).</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Agents spend most of their time and money on ranking or verifying options, which LLMs do slowly. Cached embeddings make repeated states ~2.8× faster still, and it shot to the top of GitHub trending with 2,300+ stars.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Classification-shaped work — routing, triage, fraud or compliance flags — is where this pattern could cut cost and latency. The benchmark numbers are self-reported and it needs a separate Qwen3-8B embedding server and truncates states over 2,048 tokens, so treat it as something to benchmark on your own data, not adopt.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Interesting architecture with big claimed speedups, but self-reported benchmarks and real setup caveats; no independent replication yet.</span></div>
+      <div class="linkline"><a href="https://github.com/Contrastive-LM/CLM" target="_blank" rel="noopener">github.com/Contrastive-LM/CLM</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/mikehasa/golive-skill" target="_blank" rel="noopener">golive-skill</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>An open-source agent skill plus a zero-dependency Node CLI that takes an app your AI coding agent built and walks it to production: detect what services it needs, plan, get your explicit approval, apply on your own accounts, then verify. Live-tested paths include Vercel/Netlify hosting, Supabase/Neon databases, Porkbun/GoDaddy DNS, Resend email and Stripe test mode.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Getting an AI-generated app live is still tedious account-by-account setup — hosting, database, domain, email, payments. This turns it into a gated checklist where DNS writes, production deploys and deletions each need an extra confirm flag.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly a signal for now: it's the 'last mile' between vibe-coded internal tools and something real, and the approval-gated design is the right pattern for anything touching payments. It's v0.1.0-alpha, some features are only mock-tested, and it never auto-rolls-back — don't point it at anything important yet.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Sensible design and honest about being early alpha with parts unvalidated live; too rough to rely on.</span></div>
+      <div class="linkline"><a href="https://github.com/mikehasa/golive-skill" target="_blank" rel="noopener">github.com/mikehasa/golive-skill</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/dzhng/jevgrep" target="_blank" rel="noopener">jevgrep</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A CLI for coding agents that finds code by natural-language question (e.g. 'How are database connections pooled?') and returns relevant files, line-numbered excerpts and declaration locations, using Vercel's Jev relevance-judging model to explore the repo hierarchy instead of grepping for symbols.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Agents burn a lot of tokens wandering a codebase before they find the right file. The author measured about 30% lower agent cost on ten Python SWE-bench tasks ($7.62 → $5.44) with the same 8/10 solved.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Only matters if your engineers run coding agents on large repos, where search cost is real. The evidence is thin — one run on ten tuned tasks — and the author says credential filtering isn't guaranteed, so keep it off sensitive codebases until you've checked what it sends out.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Useful idea with honest caveats, but the cost claim rests on a single ten-task run.</span></div>
+      <div class="linkline"><a href="https://github.com/dzhng/jevgrep" target="_blank" rel="noopener">github.com/dzhng/jevgrep</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/tobi/disktree" target="_blank" rel="noopener">disktree</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A Rust + GPUI treemap app for Linux, macOS and Windows that draws your disk as an interactive mosaic coloured by kind of data (code, agent scratch, toolchains, caches, git, media), with hatching on space it judges reclaimable. You mark items, review them, delete or trash, and it rescans to show what you actually recovered.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Modern dev machines fill up with caches, toolchains and AI-agent scratch directories nobody remembers creating; it makes 'what ate my disk' answerable at a glance with safeguards against deleting system paths. It hit 1,800+ stars in a day.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly just cool and genuinely handy for anyone with a full laptop. No finance or business angle; it does require Vulkan GPU support and, on macOS, Full Disk Access.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">A polished single-purpose utility — useful, not industry-changing.</span></div>
+      <div class="linkline"><a href="https://github.com/tobi/disktree" target="_blank" rel="noopener">github.com/tobi/disktree</a></div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">06</span>
+        <h2><a href="https://github.com/dgreenheck/tidewater" target="_blank" rel="noopener">Tidewater</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A browser fishing game on a Caribbean island — cast from piers or a boat, sell catches, upgrade gear — built on a custom WebGPU/WGSL engine with FFT ocean simulation, physically-based atmosphere, and spatial audio. Its description says the coastal town was built with Opus 5.5, and it's MIT-licensed with a live demo.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>It's a striking public example of how far a small team plus an AI coding model can now go on hard real-time graphics work that used to need a specialist engine team, and it runs with no install.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly just cool. It's a data point on AI-assisted development capability on a hard technical problem, not a business. Needs a recent WebGPU browser and a capable GPU, and first load compiles hundreds of shaders (a minute or more).</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Impressive technical demo with nothing to monetise or depend on.</span></div>
+      <div class="linkline"><a href="https://github.com/dgreenheck/tidewater" target="_blank" rel="noopener">github.com/dgreenheck/tidewater</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending and surrounding discussion (Hacker News was unreachable this run) · Sept 29, 2026
+  </footer>
+
+</div>
+</body>
+</html>
