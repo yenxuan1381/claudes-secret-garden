@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Sept 30, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker"><span>Field Dispatch</span><span>Sept 30, 2026</span></div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">A thinner day, so five things rather than six: a vectorless RAG system aimed squarely at financial filings, an open-source deterministic guardrail for agents that handle sensitive data, a browser-free HTML/CSS video editor, a page that runs tiny LLMs in a browser tab, and a self-hosted deployment platform.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">01</span>
+        <h2><a href="https://github.com/VectifyAI/PageIndex" target="_blank" rel="noopener">PageIndex</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>An MIT-licensed RAG system that skips vector databases: it builds a table-of-contents-style tree of a long document, then has an LLM reason its way down the tree to the right section. It reports 98.7% accuracy on FinanceBench, a question-answering benchmark built on SEC filings.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Embedding-based retrieval chops filings into chunks and often returns text that is similar but wrong; navigating by document structure mimics how an analyst actually flips to Item 7 or a footnote. Indexing is claimed at roughly $0.001 per page and it hit ~835 stars in a day.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Directly relevant: 10-Ks, prospectuses and credit agreements are exactly the long, structured documents this targets. Worth running on a handful of filings you know well and comparing against your current RAG setup. The 98.7% is self-reported, local mode handles text PDFs only, and it needs commercial LLM API keys.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Right idea for structured financial documents with a permissive license, but the headline accuracy is the vendor's own number.</span></div>
+      <div class="linkline"><a href="https://github.com/VectifyAI/PageIndex" target="_blank" rel="noopener">github.com/VectifyAI/PageIndex</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">02</span>
+        <h2><a href="https://github.com/archestra-ai/openappa" target="_blank" rel="noopener">OpenAPPA</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>An open-source (MIT) guardrail that sits between an agent and its tools and checks every outbound action with fixed rules rather than asking another LLM: it tracks how sensitive and trusted the data the agent has read is, and blocks calls that would send it somewhere it shouldn't go. When it blocks something it returns a machine-readable fix, such as redact this PII.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>LLM-as-judge guardrails can be talked out of their decision by the same prompt injection they're meant to catch; deterministic rules can't. The authors claim agents still finish about 90% of tasks versus roughly 37% under other deterministic guardrails.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>If you're letting agents touch client data, this is the design to be aware of: data-flow rules an auditor can read, instead of 'the model was told to be careful'. It's labelled a preview and an RFC, config may break, and the 90% figure is the authors' own. Read it as a spec to evaluate, not something to deploy.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Deterministic information-flow control is the right answer to prompt-injection exfiltration, but it's an early RFC with self-reported numbers.</span></div>
+      <div class="linkline"><a href="https://github.com/archestra-ai/openappa" target="_blank" rel="noopener">github.com/archestra-ai/openappa</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">03</span>
+        <h2><a href="https://github.com/geneva-render/geneva" target="_blank" rel="noopener">Geneva</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A single-binary, MIT-licensed command-line video editor where an edit is a JSON document and titles and graphics are plain HTML and CSS, drawn by a Rust layout engine without a browser. Video codecs come from FFmpeg; it supports flexbox, gradients, blend modes and CSS keyframe animations, but not CSS grid or JavaScript.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Programmatic video usually means dragging a timeline or running headless Chrome; here a script or an AI agent can write JSON and HTML and get a rendered video, with no browser and no GUI.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly just cool for you. It could be handy for auto-generating recurring market-update or results-summary clips from data, but that's a side project, not a business.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Neat, well-scoped tool with a narrow audience; nothing here shifts an industry.</span></div>
+      <div class="linkline"><a href="https://github.com/geneva-render/geneva" target="_blank" rel="noopener">github.com/geneva-render/geneva</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">04</span>
+        <h2><a href="https://github.com/robss2020/microllm-lab" target="_blank" rel="noopener">MicroLLM Lab</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A browser page that lets you download and run seven to eight tiny language models (roughly 26M to 360M parameters, such as SmolLM2 and GPT-2) on your own GPU via WebGPU, with 4-bit weights cached in the browser. A Compare tab charts speed and accuracy from test suites run in the tab. It was a 100+ point Hacker News post.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>It shows in one click what a truly tiny model can and can't do, with no server, no install and nothing leaving the machine.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly just cool. The takeaway is that on-device, private inference in a browser tab is now trivial to demo, but models this small are nowhere near useful for real analysis.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">A slick educational demo; the models are too small to do real work.</span></div>
+      <div class="linkline"><a href="https://github.com/robss2020/microllm-lab" target="_blank" rel="noopener">github.com/robss2020/microllm-lab</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head">
+        <span class="entry-no">05</span>
+        <h2><a href="https://github.com/oblien/openship" target="_blank" rel="noopener">Openship</a></h2>
+      </div>
+      <div class="field"><span class="field-label">What it is</span><p>A self-hosted, Apache-2.0 deployment platform: point it at a repo and it detects the stack, builds a container, runs it, handles routing and SSL, and redeploys on push, with preview environments, databases, backups and a bundled mail server. It says it has a production-ready core and is still actively developed.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>It aims to be a free, self-run alternative to Vercel, Heroku or Render on your own VPS, and gained roughly 437 stars in a day (14k total). The push-to-deploy-and-forget experience used to require paying a platform.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Only matters if your team runs internal apps or side projects on its own servers and wants to cut PaaS bills. The bundled mail server is GPL-licensed, docs are patchy, and it needs SSH access to your hosts, so treat it as a candidate for a sandbox box before anything sensitive.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">A real, fast-growing self-host option, but this space has many entrants and it's still maturing.</span></div>
+      <div class="linkline"><a href="https://github.com/oblien/openship" target="_blank" rel="noopener">github.com/oblien/openship</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending and Hacker News digests (news.ycombinator.com and several project sites were unreachable this run) · Sept 30, 2026
+  </footer>
+
+</div>
+</body>
+</html>
