@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tech Discoveries — Oct 1, 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+  --bg: #F2F1EC;
+  --surface: #FBFAF6;
+  --ink: #1B1D1F;
+  --muted: #63696E;
+  --rule: #DAD6CA;
+  --accent: #A85A1B;
+  --accent-soft: #EFDFC7;
+  --accent2: #2C6D66;
+  --accent2-soft: #D9E9E4;
+  --link: #A85A1B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151A;
+    --surface: #1A1E25;
+    --ink: #E9E6DE;
+    --muted: #9198A0;
+    --rule: #2B303A;
+    --accent: #E8A33D;
+    --accent-soft: #3A3020;
+    --accent2: #59BAAF;
+    --accent2-soft: #1B2E2C;
+    --link: #E8A33D;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151A;
+  --surface: #1A1E25;
+  --ink: #E9E6DE;
+  --muted: #9198A0;
+  --rule: #2B303A;
+  --accent: #E8A33D;
+  --accent-soft: #3A3020;
+  --accent2: #59BAAF;
+  --accent2-soft: #1B2E2C;
+  --link: #E8A33D;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: var(--bg); }
+
+body {
+  color: var(--ink);
+  font-family: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0 20px 80px;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.masthead {
+  padding: 56px 0 28px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.kicker {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.02;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.dek {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.scope {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+
+.log {
+  margin-top: 8px;
+}
+
+.entry {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.entry:last-child { border-bottom: none; }
+
+.entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.entry-no {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.entry h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.entry h2 a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.entry h2 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+.entry h2 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.field {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 4px 16px;
+  margin: 14px 0 0;
+  align-items: start;
+}
+
+.field-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.field p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.field.finance p { color: var(--ink); }
+
+.stamp-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.stamp {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+.stamp.toy { color: var(--muted); }
+.stamp.promising { color: var(--accent); background: var(--accent-soft); }
+.stamp.big { color: var(--accent2); background: var(--accent2-soft); }
+
+.stamp-note {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.linkline {
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+}
+
+.linkline a {
+  color: var(--link);
+  text-decoration: none;
+  word-break: break-all;
+}
+.linkline a:hover { text-decoration: underline; }
+
+footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 3px solid var(--ink);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 520px) {
+  .field { grid-template-columns: 1fr; gap: 2px; }
+  .field-label { padding-top: 8px; }
+  .entry h2 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entry { animation: rise 0.5s ease-out both; }
+  .entry:nth-child(1) { animation-delay: 0.02s; }
+  .entry:nth-child(2) { animation-delay: 0.06s; }
+  .entry:nth-child(3) { animation-delay: 0.10s; }
+  .entry:nth-child(4) { animation-delay: 0.14s; }
+  .entry:nth-child(5) { animation-delay: 0.18s; }
+  .entry:nth-child(6) { animation-delay: 0.22s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="kicker"><span>Field Dispatch</span><span>Oct 1, 2026</span></div>
+    <h1>Tech Discoveries</h1>
+    <p class="dek">A quiet day, so four things: a 25 MB database client that speaks to 100+ engines, a plugin that makes coding agents write less code, an open-hardware phased-array radar, and an MCP server that stops agents flooding their own context.</p>
+    <p class="scope">FILTER: small teams &amp; solo builds over big-co announcements · working code over hype</p>
+  </div>
+
+  <div class="log">
+
+    <article class="entry">
+      <div class="entry-head"><span class="entry-no">01</span><h2><a href="https://github.com/t8y2/dbx" target="_blank" rel="noopener">DBX</a></h2></div>
+      <div class="field"><span class="field-label">What it is</span><p>A 25 MB Apache-2.0 database client written in Rust that talks to 100+ databases (Postgres, MySQL, SQLite, Redis, Mongo, DuckDB, Oracle, SQL Server) and some message queues like Kafka and RabbitMQ. It runs as a desktop app, a Docker web app or a CLI, and ships an MCP server so coding agents can query your databases.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Most database GUIs are heavy, paid, or cover only a few engines; this is one small binary with ER diagrams, schema diffing, import/export and a built-in SQL assistant that can use Claude, OpenAI or a local model. It picked up about 1,100 stars in a day and has 23.5k total.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Relevant if you or your team poke at several data stores and pay for a client like DataGrip or TablePlus. Two cautions before pointing it at anything real: the MCP server and AI assistant give an agent live query access, so use a read-only account, and credential storage depends on the OS keychain on desktop.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Useful, maturing and well-licensed, but it competes in a crowded category and the agent-access features need careful permissions.</span></div>
+      <div class="linkline"><a href="https://github.com/t8y2/dbx" target="_blank" rel="noopener">github.com/t8y2/dbx</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head"><span class="entry-no">02</span><h2><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">Ponytail</a></h2></div>
+      <div class="field"><span class="field-label">What it is</span><p>A plugin and rule set for Claude Code, Codex, Cursor and 15+ other coding agents that makes them write less code. Before generating anything, the agent walks a ladder: does this need to exist, is it already in the repo, the standard library, a native feature, an installed dependency, or can it be one line.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Coding agents tend to over-build. The author's benchmark, run on real Claude Code sessions editing a FastAPI and React repo, reports 54% less code, 22% fewer tokens, 20% lower cost and 27% faster runs with no safety regressions. The author says earlier 80-94% figures were inflated by chatty padding and replaced them.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>If your engineers use coding agents, less generated code means less to review, which is the real bottleneck. The numbers are the author's own on one repo, and the star count shown on the repo page is very high for a project this young, so treat popularity as unverified. Cheap to trial on a branch.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Sensible idea with honest self-correction on its benchmark, but it is a prompt and rules package that any team could write; results are single-source.</span></div>
+      <div class="linkline"><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">github.com/DietrichGebert/ponytail</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head"><span class="entry-no">03</span><h2><a href="https://github.com/NawfalMotii79/PLFM_RADAR" target="_blank" rel="noopener">AERIS-10</a></h2></div>
+      <div class="field"><span class="field-label">What it is</span><p>A complete open-hardware 10.5 GHz phased-array radar: PCB designs, FPGA code, microcontroller firmware and a Python GUI. There are two variants, a 3 km one and a 20 km one using GaN power amplifiers, with a slip ring for 360-degree scanning. Hardware is CERN-OHL-P and software is MIT.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Phased-array radar was something only defense and large electronics firms built. Here the whole design stack is public, and it is climbing GitHub trending with about 260 stars a day and 26k in total.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Mostly just cool for finance. Possible side angles are drone detection, perimeter monitoring or logistics sensing, but all of that is hardware work. It is alpha, the docs say some features are unfinished, there is no standalone assembly guide, and the cost is only described as low, never quantified. Radio emission rules apply if anyone builds one.</p></div>
+      <div class="stamp-row"><span class="stamp toy">Toy</span><span class="stamp-note">Impressive open-hardware effort, but alpha, hard to build and with no clear route to a product.</span></div>
+      <div class="linkline"><a href="https://github.com/NawfalMotii79/PLFM_RADAR" target="_blank" rel="noopener">github.com/NawfalMotii79/PLFM_RADAR</a></div>
+    </article>
+    <article class="entry">
+      <div class="entry-head"><span class="entry-no">04</span><h2><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">context-mode</a></h2></div>
+      <div class="field"><span class="field-label">What it is</span><p>An MCP server that keeps coding agents' context windows from filling up. Tool output runs in a subprocess and only the printed result goes back to the model, session history is stored in SQLite and recalled by full-text search, and large docs are indexed for on-demand lookup.</p></div>
+      <div class="field"><span class="field-label">Why people care</span><p>Long agent sessions get slow and expensive as logs, snapshots and API responses pile up. The project claims a 98% cut on sandboxed calls (315 KB down to 5.4 KB, a 56 KB Playwright snapshot down to 299 bytes) and works with 17+ agent platforms.</p></div>
+      <div class="field finance"><span class="field-label">For you</span><p>Worth a look if agent token bills or lost context after compaction are a pain for your team. Note the Elastic License v2, which is source-available rather than open source and restricts offering it as a hosted service. Savings figures are the project's own examples, and it adds another component that sees everything your agent touches.</p></div>
+      <div class="stamp-row"><span class="stamp promising">Promising</span><span class="stamp-note">Targets a real cost problem with a concrete mechanism, though the numbers are self-reported and the license is not fully open.</span></div>
+      <div class="linkline"><a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">github.com/mksglu/context-mode</a></div>
+    </article>
+
+  </div>
+
+  <footer>
+    Compiled from GitHub daily trending and project READMEs (Hacker News and its search API were unreachable this run) · Oct 1, 2026
+  </footer>
+
+</div>
+</body>
+</html>
